@@ -196,7 +196,7 @@
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-md">
                             <h4 class="text-xl font-semibold text-[#003366] mb-3">Programming & Automation</h4>
-                            <p class="text-gray-600">Python (Pandas, NumPy), API Integration, Process Automation, Workflow Development.</p>
+                            <p class="text-gray-600">Python (Pandas, NumPy), API Integration, Django, Process Automation, Workflow Development.</p>
                         </div>
                     </div>
                 </div>
@@ -234,7 +234,7 @@
             <h2 class="text-3xl font-bold text-center mb-4">Get in Touch</h2>
             <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Ready to discuss your project or have a question? Fill out the form below, and I'll get back to you shortly. All inquiries will be sent securely via the form.</p>
             <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                <form action="https://formspree.io/f/mpwrevzq" method="POST" class="space-y-6">
+                <form action="https://formspree.io/f/mpwrevzq" method="POST" class="space-y-6" onsubmit="return validateForm()">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                         <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]" required>
@@ -247,18 +247,18 @@
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                         <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]" required></textarea>
                     </div>
-                    <div class="g-recaptcha" data-sitekey="6LcM5XorAAAAACTp40Kfu3RELonQDDmizvXRHayc"></div>
+                    <div class="g-recaptcha" data-sitekey="6LcM5XorAAAAACTp40Kfu3RELonQDDmizvXRHayc" name="g-recaptcha-response"></div>
                     <button type="submit" class="w-full bg-[#005A8D] text-white font-bold py-3 px-4 rounded-md hover:bg-[#004772] transition-colors">Send Message</button>
                 </form>
                 <div class="text-center mt-6 text-gray-600">
-                    <p class="text-sm text-gray-500">Your message will be sent securely via Formspree. I will reply to the email address you provide in the form.</p>
+                    <p class="text-sm text-gray-500">Tu mensaje se enviará de forma segura a través de Formspree. Responderé a la dirección de correo electrónico que proporciones en el formulario.</p>
                 </div>
             </div>
         </section>
     </main>
     
     <footer class="text-center py-8 mt-12 border-t border-gray-200">
-        <p class="text-gray-600">&copy; 2025 Pablo Trento. Built for freelance and professional showcasing.</p>
+        <p class="text-gray-600">&copy; 2025 Pablo Trento. Creado para presentación profesional y freelance.</p>
     </footer>
 
     <script>
@@ -326,6 +326,15 @@
             { name: "Python TOTAL", url: "https://www.udemy.com/certificate/UC-379b5b73-f650-468b-a7a8-244ec4012e1d/" },
             { name: "Certificate of Achievement TOEIC - English Proficiency", url: "#" }
         ];
+
+        function validateForm() {
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (recaptchaResponse.length === 0) {
+                alert("Por favor, marca la casilla 'No soy un robot' para enviar tu mensaje.");
+                return false;
+            }
+            return true;
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             const skillsCtx = document.getElementById('skillsChart').getContext('2d');
