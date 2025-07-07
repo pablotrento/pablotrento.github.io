@@ -6,6 +6,7 @@
     <title>Pablo Trento - Financial Data & Automation Expert | Freelance Client Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -240,12 +241,13 @@
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" name="_replyto" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]" required>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]" required>
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                         <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]" required></textarea>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LcM5XorAAAAACTp40Kfu3RELonQDDmizvXRHayc"></div>
                     <button type="submit" class="w-full bg-[#005A8D] text-white font-bold py-3 px-4 rounded-md hover:bg-[#004772] transition-colors">Send Message</button>
                 </form>
                 <div class="text-center mt-6 text-gray-600">
