@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pablo Trento - Financial Data & Automation Expert | Freelance Client Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: The SPA will now serve as a dual-purpose landing page: a freelance client hub and an interactive CV. The initial view will prioritize client engagement. It will feature a prominent hero section with a client-focused tagline. This is followed by a dedicated "Services" section, clearly outlining freelance offerings. A "How It Works" section will guide potential clients through the engagement process. Existing CV content (skills, experience, education) will be accessible via a dedicated "My Profile" section, ensuring recruiters can still explore Pablo's detailed background. A "Contact" section with a form will provide a direct channel for inquiries. This structure aims to capture freelance leads while still providing a comprehensive professional overview, balancing two distinct user journeys within a single, cohesive page. -->
+    <!-- Visualization & Content Choices:
+        - Skills Overview: Report Info -> Grouped technical skills. Goal -> Compare/Inform. Viz -> Chart.js Polar Area Chart. Interaction -> None. Justification -> Visually weighs skill groups.
+        - Career Path: Report Info -> Chronological work history. Goal -> Show Change/Progression. Viz -> Vertical timeline using structured HTML/CSS. Interaction -> Clicking a job title toggles detailed description. Justification -> Cleans up initial view, allows user-controlled information flow.
+        - Services Section: Report Info -> Freelance service offerings. Goal -> Inform/Promote. Viz -> Grid of styled HTML cards with Unicode icons. Interaction -> None. Justification -> Clear, scannable presentation of offerings.
+        - How It Works Section: Report Info -> Freelance engagement process. Goal -> Guide/Inform. Viz -> Step-by-step numbered list with descriptive text (HTML/CSS). Interaction -> None. Justification -> Simple, linear explanation of the process.
+        - Contact Section: Report Info -> Contact details for freelance inquiries. Goal -> Facilitate communication. Viz -> HTML form with input fields and a submit button. Interaction -> Form submission (frontend only). Justification -> Direct call to action for potential clients.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #3D3D3D;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #005A8D;
+            border-bottom-color: #005A8D;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #005A8D;
+            border: 4px solid #F8F7F4;
+            z-index: 1;
+        }
+        .timeline-line {
+            position: absolute;
+            left: -21px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #E0E0E0;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 350px;
+            max-height: 40vh;
+            width: 100%;
+            max-width: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                max-height: 50vh;
+                height: 400px;
+                max-width: 500px;
+            }
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">Pablo Trento</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-600 font-medium">Home</a>
+                <a href="#services" class="nav-link text-gray-600 font-medium">Services</a>
+                <a href="#how-it-works" class="nav-link text-gray-600 font-medium">How It Works</a>
+                <a href="#my-profile" class="nav-link text-gray-600 font-medium">My Profile</a>
+                <a href="#contact" class="nav-link text-gray-600 font-medium">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section id="home" class="text-center min-h-[60vh] flex flex-col justify-center items-center section-fade-in">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-[#003366] mb-4">Pablo Trento</h1>
+            <p class="text-xl md:text-2xl font-light text-gray-700 mb-8 max-w-4xl">Your Partner in Financial Data, Business Intelligence & Process Automation</p>
+            <p class="max-w-3xl mx-auto text-base md:text-lg text-gray-600 leading-relaxed mb-8">
+                I help businesses bridge the gap between finance and data, driving efficiency and insights through automation and analytics. Let's transform your financial operations.
+            </p>
+            <div class="flex space-x-4">
+                <a href="#services" class="bg-[#005A8D] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#004772] transition-colors">Explore My Services</a>
+                <a href="#contact" class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Get in Touch</a>
+            </div>
+        </section>
+
+        <section id="services" class="py-16 section-fade-in">
+            <h2 class="text-3xl font-bold text-center mb-4">My Services</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">I offer specialized freelance services designed to optimize your financial processes and empower data-driven decisions. Here's how I can help your business thrive:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <span class="text-5xl mb-4">📊</span>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Financial Data Analysis & Reporting</h3>
+                    <p class="text-gray-600">Transform raw financial data into clear, actionable insights. From P&L analysis to comprehensive financial statements, ensuring accuracy and integrity.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <span class="text-5xl mb-4">📈</span>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Business Intelligence Dashboard Development</h3>
+                    <p class="text-gray-600">Design and implement interactive dashboards (Power BI, KNIME) that provide real-time visibility into your key performance indicators.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <span class="text-5xl mb-4">⚙️</span>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Process Automation & Optimization</h3>
+                    <p class="text-gray-600">Streamline repetitive tasks and enhance operational efficiency using Python, Power Query, and KNIME workflows.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <span class="text-5xl mb-4">💰</span>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Custom Financial Modeling</h3>
+                    <p class="text-gray-600">Develop robust financial models for forecasting, budgeting, and strategic planning, tailored to your specific business needs.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <span class="text-5xl mb-4">⚖️</span>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Regulatory Compliance Consulting</h3>
+                    <p class="text-gray-600">Ensure adherence to financial regulations (IFRS 9, GAAP, IRS forms) with expert guidance and meticulous documentation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <span class="text-5xl mb-4">💡</span>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Ad-hoc Financial & Data Projects</h3>
+                    <p class="text-gray-600">Flexible support for unique financial analysis, data integration, or automation challenges your business may face.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="py-16 section-fade-in">
+            <h2 class="text-3xl font-bold text-center mb-4">How It Works</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Engaging my freelance services is a straightforward process designed for efficiency and clear communication. Here are the steps:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-[#005A8D] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-2">Initial Consultation</h3>
+                    <p class="text-gray-600">We discuss your needs, challenges, and project goals to understand how I can best assist you.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-[#005A8D] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-2">Proposal & Agreement</h3>
+                    <p class="text-gray-600">I provide a detailed proposal outlining the scope, deliverables, timeline, and pricing for your project.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-[#005A8D] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-2">Execution & Collaboration</h3>
+                    <p class="text-gray-600">I execute the project with regular updates and collaborate closely to ensure alignment with your vision.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-[#005A8D] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">4</div>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-2">Delivery & Support</h3>
+                    <p class="text-gray-600">Receive your completed project, with ongoing support and revisions as needed to ensure your satisfaction.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="my-profile" class="py-16 section-fade-in">
+            <h2 class="text-3xl font-bold text-center mb-4">My Professional Profile</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">This section provides a detailed look at my professional background, skills, and career journey, offering a comprehensive overview for those interested in my full profile.</p>
+
+            <div id="skills-subsection" class="py-8">
+                <h3 class="text-2xl font-bold text-center mb-4">Core Competencies</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">A visual representation of my key skill areas, highlighting my blend of financial and technical expertise.</p>
+                <div class="w-full">
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="text-xl font-semibold text-[#003366] mb-3">Financial Analysis & Reporting</h4>
+                            <p class="text-gray-600">P&L Control, Financial Statements, Reconciliation, Discrepancy Resolution, Audit Trails, Economic P&L, IFRS 9, GAAP.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="text-xl font-semibold text-[#003366] mb-3">Data & Business Intelligence</h4>
+                            <p class="text-gray-600">Microsoft Power BI, Power Query, KNIME, SQL, Data Analysis, Data Automation, Business Intelligence, Dashboarding.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="text-xl font-semibold text-[#003366] mb-3">Programming & Automation</h4>
+                            <p class="text-gray-600">Python (Pandas, NumPy), API Integration, Django, Process Automation, Workflow Development.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="experience-subsection" class="py-8 mt-12">
+                <h3 class="text-2xl font-bold text-center mb-4">Career Journey</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Explore my professional history and the progression of my roles and responsibilities over time.</p>
+                <div class="relative max-w-3xl mx-auto">
+                    <div class="timeline-line"></div>
+                    <div id="timeline-container" class="space-y-12">
+                    </div>
+                </div>
+            </div>
+
+            <div id="education-subsection" class="py-8 mt-12 bg-white rounded-xl shadow-md">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-4">Education & Certifications</h3>
+                    <p class="text-gray-600 mb-8 max-w-2xl mx-auto">My academic background and continuous learning through certifications form the foundation of my technical and business expertise.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                    <div>
+                        <h4 class="text-xl font-semibold text-[#003366] mb-4">Education</h4>
+                        <div id="education-container" class="space-y-4"></div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-[#003366] mb-4">Certifications</h4>
+                        <div id="certifications-container" class="space-y-4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 section-fade-in">
+            <h2 class="text-3xl font-bold text-center mb-4">Get in Touch</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Ready to discuss your project or have a question? Fill out the form below, and I'll get back to you shortly. You can also reach me directly.</p>
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-[#005A8D] text-white font-bold py-3 px-4 rounded-md hover:bg-[#004772] transition-colors">Send Message</button>
+                </form>
+                <div class="text-center mt-6 text-gray-600">
+                    <p>Or connect directly:</p>
+                    <p class="font-semibold">+351925014718</p>
+                    <p class="font-semibold">pablotrento.911@gmail.com</p>
+                    <p><a href="https://www.linkedin.com/in/pabloandrestrento" target="_blank" class="text-[#005A8D] hover:underline">LinkedIn Profile</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="text-center py-8 mt-12 border-t border-gray-200">
+        <p class="text-gray-600">&copy; 2025 Pablo Trento. Built for freelance and professional showcasing.</p>
+    </footer>
+
+    <script>
+        const experienceData = [
+            {
+                company: "BNP Paribas CIB",
+                role: "Profit & Loss (P&L) Controller",
+                duration: "Jan 2025 – Jun 2025",
+                location: "Lisbon, Portugal",
+                details: [
+                    "Managed daily/monthly reconciliation of Economic P&L figures with accounting ledger entries.",
+                    "Identified and resolved discrepancies by collaborating with Middle Office, Back Office, Market Risk, and Finance teams.",
+                    "Validated P&L figures for fixed-income securities and bond products.",
+                    "Supported process automation using KNIME, Excel, SAP, and Power Query.",
+                    "Ensured compliance with IFRS 9 and GAAP (Europe) standards.",
+                    "Served as a KNIME Champion, promoting automation and developing workflows."
+                ]
+            },
+            {
+                company: "BNP Paribas CIB",
+                role: "Fees Payable Officer Controller",
+                duration: "May 2024 – Feb 2025",
+                location: "Lisbon, Portugal",
+                details: [
+                    "Responsible for the computation, monitoring, reconciliation, and payment of various commission invoices.",
+                    "Acted as a primary point of contact for relevant departments, contributing to team efficiency improvements."
+                ]
+            },
+            {
+                company: "Advotax",
+                role: "Financial and Accounting Consultant",
+                duration: "Nov 2023 – May 2024",
+                location: "United Kingdom",
+                details: [
+                    "Facilitated accounting, financial, and regulatory compliance for multinational clients in the UK and USA.",
+                    "Performed bookkeeping and financial control using Xero Accounting.",
+                    "Ensured compliance by accurately filling IRS forms (1120, 1120sg, 5472, w8, w9).",
+                    "Utilized Python and ChatGPT to connect APIs for creating cryptocurrency investment tracking portfolios.",
+                    "Designed customized charts of accounts tailored for tech startups."
+                ]
+            },
+            {
+                company: "Mutual de Médicos y Personal Jerárquico del Hospital Privado",
+                role: "Bookkeeper and Financial Controller",
+                duration: "Jan 2015 – Jan 2024",
+                location: "Córdoba, Argentina",
+                details: [
+                    "Managed comprehensive bookkeeping, accounting, financial control, and payroll for a premier private fund.",
+                    "Key Achievement: Successfully implemented an electronic payment system with electronic invoicing.",
+                    "Key Achievement: Led the implementation of digital solutions for IT business transformation during the pandemic.",
+                    "Key Achievement: Automated government auditing and accounting processes, improving data integrity and reducing manual effort."
+                ]
+            }
+        ];
+
+        const educationData = [
+            { institution: "Universidad Tecnológica Nacional", degree: "Technician, Computer Programming", year: "2021" },
+            { institution: "EALDE Business School", degree: "Risk Management Master, MBA", year: "2018 - 2019" },
+            { institution: "Universidad Nacional de Córdoba", degree: "Bachelor in Business Administration", year: "2008 - 2014" },
+            { institution: "Université Paris Dauphine", degree: "Exchange Master MSO & LSO", year: "2013 - 2014" },
+        ];
+
+        const certificationsData = [
+            { name: "Power BI - Análisis de Datos y Business Intelligence", url: "https://www.udemy.com/certificate/UC-fbab63fa-9317-4f10-a06b-d86fd3eacada/" },
+            { name: "Python TOTAL - Programador Avanzado en 16 días", url: "https://www.udemy.com/certificate/UC-379b5b73-f650-468b-a7a8-244ec4012e1d/" },
+            { name: "Certificate of Achievement TOEIC - English Proficiency", url: "#" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillsCtx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(skillsCtx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Financial Analysis', 'Business Intelligence', 'Programming & Automation', 'Accounting Operations', 'Software Proficiency'],
+                    datasets: [{
+                        label: 'Skill Level',
+                        data: [90, 95, 85, 80, 92],
+                        backgroundColor: [
+                            'rgba(0, 51, 102, 0.7)',
+                            'rgba(0, 90, 141, 0.7)',
+                            'rgba(77, 137, 179, 0.7)',
+                            'rgba(142, 184, 217, 0.7)',
+                            'rgba(207, 231, 247, 0.7)'
+                        ],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            pointLabels: {
+                                display: true,
+                                centerPointLabels: true,
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            ticks: {
+                               display: false 
+                            },
+                             grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 12,
+                                    family: 'Inter'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}% proficiency`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const timelineContainer = document.getElementById('timeline-container');
+            experienceData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'relative pl-8 timeline-item';
+                div.innerHTML = `
+                    <div class="cursor-pointer">
+                        <h3 class="text-xl font-bold text-[#003366]">${item.role}</h3>
+                        <p class="font-semibold text-gray-700">${item.company}</p>
+                        <p class="text-sm text-gray-500">${item.duration} | ${item.location}</p>
+                    </div>
+                    <div class="details hidden mt-4 pl-4 border-l-2 border-gray-200">
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            ${item.details.map(d => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                timelineContainer.appendChild(div);
+
+                div.querySelector('.cursor-pointer').addEventListener('click', () => {
+                    const details = div.querySelector('.details');
+                    details.classList.toggle('hidden');
+                });
+            });
+
+            const educationContainer = document.getElementById('education-container');
+            educationData.forEach(edu => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <p class="font-semibold">${edu.degree}</p>
+                    <p class="text-gray-600">${edu.institution}</p>
+                    <p class="text-sm text-gray-500">${edu.year}</p>
+                `;
+                educationContainer.appendChild(div);
+            });
+
+            const certificationsContainer = document.getElementById('certifications-container');
+            certificationsData.forEach(cert => {
+                const p = document.createElement('p');
+                p.className = "font-semibold text-gray-700";
+                p.innerHTML = `✓ <a href="${cert.url}" target="_blank" class="text-[#005A8D] hover:underline">${cert.name}</a>`;
+                certificationsContainer.appendChild(p);
+            });
+            
+            const fader = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(fader);
+            const sections = document.querySelectorAll('.section-fade-in');
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
