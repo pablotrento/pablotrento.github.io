@@ -211,7 +211,7 @@
                 </div>
             </div>
 
-            <div id="education-subsection" class="py-8 mt-12 bg-white rounded-xl shadow-md">
+            <div id="education-subsection" class="py-8 mt-12 bg-white rounded-xl shadow-md px-8">
                 <div class="text-center">
                     <h3 class="text-2xl font-bold mb-4">Education & Certifications</h3>
                     <p class="text-gray-600 mb-8 max-w-2xl mx-auto">My academic background and continuous learning through certifications form the foundation of my technical and business expertise.</p>
@@ -231,28 +231,25 @@
 
         <section id="contact" class="py-16 section-fade-in">
             <h2 class="text-3xl font-bold text-center mb-4">Get in Touch</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Ready to discuss your project or have a question? Fill out the form below, and I'll get back to you shortly. You can also reach me directly.</p>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Ready to discuss your project or have a question? Fill out the form below, and I'll get back to you shortly. All inquiries will be sent securely via the form.</p>
             <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                <form class="space-y-6">
+                <form action="https://formspree.io/f/mpwrevzq" method="POST" class="space-y-6">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]">
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]" required>
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]">
+                        <input type="email" id="email" name="_replyto" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]" required>
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]"></textarea>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#005A8D] focus:border-[#005A8D]" required></textarea>
                     </div>
                     <button type="submit" class="w-full bg-[#005A8D] text-white font-bold py-3 px-4 rounded-md hover:bg-[#004772] transition-colors">Send Message</button>
                 </form>
                 <div class="text-center mt-6 text-gray-600">
-                    <p>Or connect directly:</p>
-                    <p class="font-semibold">+351925014718</p>
-                    <p class="font-semibold">pablotrento.911@gmail.com</p>
-                    <p><a href="https://www.linkedin.com/in/pabloandrestrento" target="_blank" class="text-[#005A8D] hover:underline">LinkedIn Profile</a></p>
+                    <p class="text-sm text-gray-500">Your message will be sent securely via Formspree. I will reply to the email address you provide in the form.</p>
                 </div>
             </div>
         </section>
@@ -323,8 +320,8 @@
         ];
 
         const certificationsData = [
-            { name: "Power BI - Análisis de Datos y Business Intelligence", url: "https://www.udemy.com/certificate/UC-fbab63fa-9317-4f10-a06b-d86fd3eacada/" },
-            { name: "Python TOTAL - Programador Avanzado en 16 días", url: "https://www.udemy.com/certificate/UC-379b5b73-f650-468b-a7a8-244ec4012e1d/" },
+            { name: "Power BI", url: "https://www.udemy.com/certificate/UC-fbab63fa-9317-4f10-a06b-d86fd3eacada/" },
+            { name: "Python TOTAL", url: "https://www.udemy.com/certificate/UC-379b5b73-f650-468b-a7a8-244ec4012e1d/" },
             { name: "Certificate of Achievement TOEIC - English Proficiency", url: "#" }
         ];
 
