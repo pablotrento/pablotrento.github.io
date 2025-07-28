@@ -251,14 +251,14 @@
                     <button type="submit" class="w-full bg-[#005A8D] text-white font-bold py-3 px-4 rounded-md hover:bg-[#004772] transition-colors">Send Message</button>
                 </form>
                 <div class="text-center mt-6 text-gray-600">
-                    <p class="text-sm text-gray-500">Tu mensaje se enviará de forma segura a través de Formspree. Responderé a la dirección de correo electrónico que proporciones en el formulario.</p>
+                    <p class="text-sm text-gray-500">Powered by Formspree.</p>
                 </div>
             </div>
         </section>
     </main>
     
     <footer class="text-center py-8 mt-12 border-t border-gray-200">
-        <p class="text-gray-600">&copy; 2025 Pablo Trento. Creado para presentación profesional y freelance.</p>
+        <p class="text-gray-600">&copy; 2025 Pablo Trento.</p>
     </footer>
 
     <script>
@@ -324,13 +324,13 @@
         const certificationsData = [
             { name: "Power BI", url: "https://www.udemy.com/certificate/UC-fbab63fa-9317-4f10-a06b-d86fd3eacada/" },
             { name: "Python TOTAL", url: "https://www.udemy.com/certificate/UC-379b5b73-f650-468b-a7a8-244ec4012e1d/" },
-            { name: "Certificate of Achievement TOEIC - English Proficiency", url: "#" }
+            { name: "Proficiency in KNIME Analytics Platform", url: "https://www.credly.com/badges/05d138e0-db79-429d-b3f3-70916c53271f/linked_in_profile" }
         ];
 
         function validateForm() {
             const recaptchaResponse = grecaptcha.getResponse();
             if (recaptchaResponse.length === 0) {
-                alert("Por favor, marca la casilla 'No soy un robot' para enviar tu mensaje.");
+                alert("Please check the box, before sending the message!");
                 return false;
             }
             return true;
