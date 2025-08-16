@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calculadora Científica y Financiera</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: 'Inter', sans-serif; background: transparent; display: flex; justify-content: flex-end; align-items: flex-end; min-height: 100vh; padding: .5rem; margin:0 }
+  .calculator { transform: scale(.85); transform-origin: bottom right; background: #1a202c; border-radius: 1rem; padding: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,.3); color: white; width: 380px }
+  .display { background: #f1f5f9; color: black; border-radius: .5rem; padding: .5rem; margin-bottom: .5rem; text-align: right; min-height:58px }
+  .display .input { font-size: 1rem; color: #4a5568; word-break: break-all }
+  .display .result { font-size: 1.4rem; font-weight: 700 }
+  .keypad { display: grid; grid-template-columns: repeat(6, 1fr); gap: .25rem }
+  .btn { padding: .55rem; border-radius: .35rem; font-weight: 700; cursor: pointer; background: #4a5568; color: white; border: none }
+  .btn:hover { filter: brightness(.9) }
+  .op { background: #ff9800 }
+  .fn { background: #007bff }
+  .eq { background: #4CAF50; grid-column: span 2 }
+  .clr { background: #f44336 }
+  .small { font-size: .9rem }
+</style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">
+      <div id="input-display" class="input">0</div>
+      <div id="result-display" class="result">0</div>
+    </div>
+
+    <div class="keypad">
+      <!-- scientific row -->
+      <button class="btn fn small" onclick="applyScientific('sin')">sin</button>
+      <button class="btn fn small" onclick="applyScientific('cos')">cos</button>
+      <button class="btn fn small" onclick="applyScientific('tan')">tan</button>
+      <button class="btn fn small" onclick="applyScientific('log')">log</button>
+      <button class="btn fn small" onclick="applyScientific('ln')">ln</button>
+      <button class="btn fn small" onclick="applyScientific('sqrt')">√</button>
+
+      <!-- numbers / ops -->
+      <button class="btn" onclick="appendInput('7')">7</button>
+      <button class="btn" onclick="appendInput('8')">8</button>
+      <button class="btn" onclick="appendInput('9')">9</button>
+      <button class="btn op" onclick="appendInput('/')">÷</button>
+      <button class="btn op" onclick="appendInput('^')">^</button>
+      <button class="btn clr" onclick="clearAll()">C</button>
+
+      <button class="btn" onclick="appendInput('4')">4</button>
+      <button class="btn" onclick="appendInput('5')">5</button>
+      <button class="btn" onclick="appendInput('6')">6</button>
+      <button class="btn op" onclick="appendInput('*')">×</button>
+      <button class="btn" onclick="appendInput('(')">(</button>
+      <button class="btn" onclick="appendInput(')')">)</button>
+
+      <button class="btn" onclick="appendInput('1')">1</button>
+      <button class="btn" onclick="appendInput('2')">2</button>
+      <button class="btn" onclick="appendInput('3')">3</button>
+      <button class="btn op" onclick="appendInput('-')">−</button>
+      <button class="btn fn" onclick="toggleSign()">±</button>
+      <button class="btn fn small" onclick="appendInput(Math.PI.toString())">π</button>
+
+      <button class="btn" onclick="appendInput('0')">0</button>
+      <button class="btn" onclick="appendInput('.')">.</button>
+      <button class="btn eq" onclick="onEquals()">=</button>
+      <button class="btn op" onclick="appendInput('+')">+</button>
+      <button class="btn fn small" onclick="applyScientific('exp')">exp</button>
+      <button class="btn fn small" onclick="applyScientific('fact')">n!</button>
+    </div>
+  </div>
+
+<script>
+// State
+let inputDisplay = document.getElementById('input-display')
+let resultDisplay = document.getElementById('result-display')
+let currentInput = ''
+
+// Helpers
+function updateDisplays() {
+  inputDisplay.innerText = currentInput === '' ? '0' : currentInput
+}
+
+function appendInput(ch){
+  // ch can be number, '.', operator or a full number string (for PI)
+  const ops = '+-*/^'
+  if (ch === '.') {
+    // prevent multiple dots in the current number
+    const lastNumber = getLastNumberSegment()
+    if (lastNumber.includes('.')) return
+    currentInput += '.'
+  } else if (ops.includes(ch)) {
+    if (currentInput === '') {
+      // allow unary minus at start
+      if (ch === '-') currentInput = '-'
+      else return
+    } else {
+      const last = currentInput.slice(-1)
+      if (ops.includes(last)) {
+        // replace last operator with new one
+        currentInput = currentInput.slice(0, -1) + ch
+      } else {
+        currentInput += ch
+      }
+    }
+  } else if (ch === '(' || ch === ')') {
+    currentInput += ch
+  } else {
+    // might be a full numeric string, e.g. PI
+    currentInput += ch
+  }
+  updateDisplays()
+}
+
+function getLastNumberSegment(){
+  // return substring after last operator or '('
+  const match = currentInput.match(/[^+\-*/^()]*$/)
+  return match ? match[0] : ''
+}
+
+function toggleSign(){
+  // Toggle sign of the last number segment
+  if (currentInput === '') { currentInput = '-'; updateDisplays(); return }
+  // find last number segment
+  const idx = Math.max(currentInput.lastIndexOf('+'), currentInput.lastIndexOf('-'), currentInput.lastIndexOf('*'), currentInput.lastIndexOf('/'), currentInput.lastIndexOf('^'), currentInput.lastIndexOf('('))
+  const start = idx === -1 ? 0 : idx + 1
+  const before = currentInput.slice(0, start)
+  const seg = currentInput.slice(start)
+  if (seg.startsWith('-')) {
+    currentInput = before + seg.slice(1)
+  } else {
+    currentInput = before + '-' + seg
+  }
+  updateDisplays()
+}
+
+function clearAll(){ currentInput = ''; resultDisplay.innerText = '0'; updateDisplays() }
+
+// Scientific functions operate on the result of the current expression (if any)
+function applyScientific(name){
+  // evaluate current expression as a number
+  let val = parseExpressionSafely(currentInput)
+  if (name === 'pi') { currentInput += Math.PI.toString(); updateDisplays(); return }
+  if (name === 'fact') {
+    if (!Number.isInteger(val) || val < 0) { resultDisplay.innerText = 'Error'; return }
+    let r = factorial(val)
+    currentInput = String(r); resultDisplay.innerText = formatResult(r); updateDisplays(); return
+  }
+
+  if (isNaN(val)) { resultDisplay.innerText = 'Error'; return }
+  let res
+  switch(name){
+    case 'sin': res = Math.sin(val * Math.PI / 180); break
+    case 'cos': res = Math.cos(val * Math.PI / 180); break
+    case 'tan': res = Math.tan(val * Math.PI / 180); break
+    case 'log': res = Math.log10(val); break
+    case 'ln': res = Math.log(val); break
+    case 'sqrt': res = Math.sqrt(val); break
+    case 'exp': res = Math.exp(val); break
+    default: res = NaN
+  }
+  currentInput = String(res)
+  resultDisplay.innerText = formatResult(res)
+  updateDisplays()
+}
+
+function factorial(n){
+  if (n < 0) return NaN
+  if (n === 0) return 1
+  let res = 1
+  for (let i = 2; i <= n; i++) res *= i
+  return res
+}
+
+function formatResult(x){
+  if (!isFinite(x)) return 'Error'
+  if (Math.abs(x) < 1e12 && Math.abs(x - Math.round(x)) > 1e-12) {
+    // show up to 10 decimal places, trim trailing zeros
+    return parseFloat(x.toFixed(10)).toString()
+  }
+  return x.toString()
+}
+
+// -------- Expression parser & evaluator (shunting-yard) --------
+function parseExpressionSafely(expr){
+  if (!expr || expr.trim() === '') return 0
+  try {
+    const tokens = tokenize(expr)
+    if (!tokens) return NaN
+    const rpn = toRPN(tokens)
+    const value = evalRPN(rpn)
+    return value
+  } catch (e) {
+    return NaN
+  }
+}
+
+function tokenize(s){
+  const tokens = []
+  let i = 0
+  const isDigit = c => /[0-9]/.test(c)
+  while (i < s.length){
+    const c = s[i]
+    if (c === ' ') { i++; continue }
+    if (c === '+' || c === '*' || c === '/' || c === '^' || c === '(' || c === ')'){
+      tokens.push(c); i++; continue
+    }
+    if (c === '-'){
+      // unary minus detection
+      const prev = tokens.length ? tokens[tokens.length -1] : null
+      if (prev === null || ['+','-','*','/','^','('].includes(prev)){
+        tokens.push('u-')
+      } else {
+        tokens.push('-')
+      }
+      i++; continue
+    }
+    // number (may start with dot)
+    if (isDigit(c) || c === '.'){
+      let j = i
+      let num = ''
+      while (j < s.length && (/[0-9.]/.test(s[j]))) { num += s[j]; j++ }
+      // validate multiple dots
+      if ((num.match(/\./g) || []).length > 1) return null
+      tokens.push(num)
+      i = j
+      continue
+    }
+    // unexpected char
+    return null
+  }
+  return tokens
+}
+
+function toRPN(tokens){
+  const out = []
+  const ops = []
+  const precedence = { 'u-': 4, '^': 3, '*': 2, '/': 2, '+': 1, '-': 1 }
+  const rightAssoc = { 'u-': true, '^': true }
+  tokens.forEach(tok => {
+    if (!isNaN(Number(tok))) {
+      out.push(tok)
+    } else if (tok === 'u-' || ['+','-','*','/','^'].includes(tok)){
+      while (ops.length){
+        const top = ops[ops.length-1]
+        if (top === '(') break
+        const pTop = precedence[top] || 0
+        const pTok = precedence[tok] || 0
+        if ( (rightAssoc[tok] && pTok < pTop) || (!rightAssoc[tok] && pTok <= pTop) ){
+          out.push(ops.pop())
+        } else break
+      }
+      ops.push(tok)
+    } else if (tok === '('){
+      ops.push(tok)
+    } else if (tok === ')'){
+      while (ops.length && ops[ops.length-1] !== '(') out.push(ops.pop())
+      if (ops.length === 0) throw new Error('Mismatched parentheses')
+      ops.pop() // remove '('
+    } else {
+      throw new Error('Unknown token '+tok)
+    }
+  })
+  while (ops.length){
+    const op = ops.pop()
+    if (op === '(' || op === ')') throw new Error('Mismatched parentheses')
+    out.push(op)
+  }
+  return out
+}
+
+function evalRPN(rpn){
+  const stack = []
+  rpn.forEach(tok => {
+    if (!isNaN(Number(tok))) {
+      stack.push(Number(tok))
+    } else if (tok === 'u-'){
+      const a = stack.pop()
+      stack.push(-a)
+    } else {
+      const b = stack.pop()
+      const a = stack.pop()
+      let res
+      switch(tok){
+        case '+': res = a + b; break
+        case '-': res = a - b; break
+        case '*': res = a * b; break
+        case '/': res = a / b; break
+        case '^': res = Math.pow(a, b); break
+        default: throw new Error('Unsupported op '+tok)
+      }
+      stack.push(res)
+    }
+  })
+  if (stack.length !== 1) throw new Error('Invalid expression')
+  return stack[0]
+}
+
+// equals handler
+function onEquals(){
+  const value = parseExpressionSafely(currentInput)
+  if (isNaN(value) || !isFinite(value)) {
+    resultDisplay.innerText = 'Error'
+    return
+  }
+  resultDisplay.innerText = formatResult(value)
+  currentInput = String(value)
+  updateDisplays()
+}
+
+// keyboard support (optional)
+window.addEventListener('keydown', e => {
+  const key = e.key
+  if (/^[0-9]$/.test(key)) appendInput(key)
+  else if (key === '.') appendInput('.')
+  else if (key === '+' || key === '-' || key === '*' || key === '/' || key === '^') appendInput(key)
+  else if (key === 'Enter') { e.preventDefault(); onEquals() }
+  else if (key === 'Backspace') { currentInput = currentInput.slice(0, -1); updateDisplays() }
+  else if (key === '(' || key === ')') appendInput(key)
+})
+</script>
+</body>
+</html>

@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pablo Trento - Ekspert i finansielle data og automatisering | Freelance klientcenter</title>
+    <title>Pablo Trento - Ekspert i finansielle data og automatisering | Freelance Kunde Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutral Harmony -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -69,6 +68,53 @@
             opacity: 1;
             transform: translateY(0);
         }
+		
+		/* Floating modal styles (responsive) */
+		.modal-overlay {
+			position: fixed;
+			bottom: 1rem;
+			right: 1rem;
+			width: auto;
+			height: auto;
+			background: transparent; /* Fjern dæmpning */
+			display: none; /* Indledningsvis skjult */
+			z-index: 2000;
+		}
+
+		.modal-overlay.show {
+			display: block;
+		}
+
+		.modal-content {
+			background-color: transparent;
+			border-radius: 0.75rem;
+			box-shadow: none;
+			padding: 0;
+			width: auto;
+			height: auto;
+		}
+
+		#calculator-iframe {
+			width: 400px;
+			height: 400px;
+			border: none;
+		}
+
+		.close-button {
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			background: #f44336;
+			color: #fff;
+			border-radius: 50%;
+			width: 28px;
+			height: 28px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1rem;
+			cursor: pointer;
+		}
     </style>
 </head>
 <body class="antialiased">
@@ -77,17 +123,14 @@
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="text-xl font-bold text-gray-800">Pablo Trento</div>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#home" class="nav-link text-gray-600 font-medium">Hjem</a>
-                <a href="excel-automations-da.html" class="nav-link text-gray-600 font-medium">WorkFlows</a>
-                <a href="#services" class="nav-link text-gray-600 font-medium">Tjenester</a>
-                <a href="#how-it-works" class="nav-link text-gray-600 font-medium">Sådan fungerer det</a>
+                <a href="#home" class="nav-link text-gray-600 font-medium">Top</a>
+                <a href="excel-automations-da.html" class="nav-link text-gray-600 font-medium">Automatiseringsservices</a>            
                 <a href="#my-profile" class="nav-link text-gray-600 font-medium">Min profil</a>
                 <a href="#contact" class="nav-link text-gray-600 font-medium">Kontakt</a>
-                <!-- Language Selector -->
                 <div class="ml-4 flex space-x-2">
                     <a href="index-es.html" class="text-gray-600 hover:text-[#005A8D]">ES</a>
                     <span class="text-gray-400">|</span>
-                    <a href="index.html" class="text-gray-600 hover:text-[#005A8D]">EN</a>
+                    <a href="index-en.html" class="text-gray-600 hover:text-[#005A8D]">EN</a>
                     <span class="text-gray-400">|</span>
                     <a href="index-da.html" class="font-semibold text-[#005A8D]">DA</a>
                 </div>
@@ -97,62 +140,56 @@
 
     <main class="container mx-auto px-6 py-12">
         <section id="home" class="text-center min-h-[60vh] flex flex-col justify-center items-center section-fade-in">
-			<!-- Profile Picture Section -->
-            <div class="mb-8">
-                <img id="profile-picture" src="assets/profile-pic.jpg" alt="Pablo Trentos profilbillede" class="rounded-full w-32 h-32 md:w-40 md:h-40 object-cover mx-auto shadow-lg border-4 border-white dark:border-white">
+			<div class="mb-8">
+                <img id="profile-picture" src="assets/profile-pic.jpg" alt="Pablo Trento profilbillede" class="rounded-full w-32 h-32 md:w-40 md:h-40 object-cover mx-auto shadow-lg border-4 border-white dark:border-white">
             </div>
-
+        
             <h1 class="text-4xl md:text-6xl font-extrabold text-[#003366] mb-4">Pablo Trento</h1>
             <p class="text-xl md:text-2xl font-light text-gray-700 mb-8 max-w-4xl">Din partner inden for finansielle data, Business Intelligence og procesautomatisering</p>
             <p class="max-w-3xl mx-auto text-base md:text-lg text-gray-600 leading-relaxed mb-8">
-                Jeg hjælper virksomheder med at bygge bro mellem økonomi og data, fremme effektivitet og indsigt gennem automatisering og analyse. Lad os sammen transformere dine finansielle operationer.
+                Jeg hjælper virksomheder med at bygge bro mellem finans og data, hvilket øger effektivitet og indsigt gennem procesautomatisering og analyse.
             </p>
             <div class="flex space-x-4">
-                <a href="#services" class="bg-[#005A8D] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#004772] transition-colors">Udforsk mine tjenester</a>
-                <a href="#contact" class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Kontakt mig</a>
+                <a href="#services" class="bg-gradient-to-r from-sky-400 to-indigo-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-[#004772] transition-colors">Løsninger</a>
+                <a href="#contact" class="bg-gray-300 text-black-200 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Kontakt</a>
             </div>
         </section>
 
         <section id="services" class="py-16 section-fade-in">
-            <h2 class="text-3xl font-bold text-center mb-4">Mine tjenester</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Jeg tilbyder specialiserede freelancetjenester, der er designet til at optimere dine finansielle processer og drive datadrevne beslutninger. Sådan kan jeg hjælpe din virksomhed med at trives:</p>
+            <h2 class="text-3xl font-bold text-center mb-4">Services</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Jeg tilbyder specialiserede freelanceservices, der er designet til at optimere dine finansielle processer og skabe datadrevne beslutninger. Her er, hvordan jeg kan hjælpe din virksomhed med at vokse:</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">📊</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Analyse og rapportering af finansielle data</h3>
-                    <p class="text-gray-600">Omdan rå finansielle data til klar, handlingsorienteret indsigt. Fra P&L-analyse til komplette regnskaber, der sikrer præcision og integritet.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">📈</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Udvikling af Business Intelligence dashboards</h3>
-                    <p class="text-gray-600">Design og implementering af interaktive dashboards (Power BI, KNIME), der giver realtidsindsigt i dine nøglepræstationsindikatorer.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">⚙️</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Procesautomatisering og -optimering</h3>
-                    <p class="text-gray-600">Strømlin gentagne opgaver og forbedr driftseffektiviteten ved hjælp af Python, Power Query og KNIME-workflows.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">💰</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Brugerdefineret finansiel modellering</h3>
-                    <p class="text-gray-600">Udvikling af robuste finansielle modeller til prognoser, budgettering og strategisk planlægning, skræddersyet til din virksomheds specifikke behov.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">⚖️</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Konsulentbistand i lovgivningsmæssig overholdelse</h3>
-                    <p class="text-gray-600">Sikring af overholdelse af finansielle bestemmelser (IFRS 9, GAAP, IRS-formularer) med ekspertvejledning og omhyggelig dokumentation.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">💡</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Ad-hoc finans- og dataprojkter</h3>
-                    <p class="text-gray-600">Fleksibel support til finansiel analyse, dataintegration eller unikke automatiseringsudfordringer, som din virksomhed måtte stå over for.</p>
-                </div>
-            </div>
+			
+				<a href="#contact" class="block w-full">
+					<div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center h-80 hover:bg-gray-50 transition-colors duration-300">
+						<span class="text-5xl mb-4">📊</span>
+						<h3 class="text-xl font-semibold text-[#003366] mb-3">Finansiel dataanalyse og rapportering</h3>
+						<p class="text-gray-600">Omdan rå finansielle data til klare, handlingsorienterede indsigter. Fra P&L-analyse til fulde regnskaber, der sikrer nøjagtighed og integritet.</p>
+					</div>
+				</a>
+
+				<a href="#contact" class="block w-full">
+					<div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center h-80 hover:bg-gray-50 transition-colors duration-300">
+						<span class="text-5xl mb-4">📈</span>
+						<h3 class="text-xl font-semibold text-[#003366] mb-3">Udvikling af Business Intelligence-dashboards</h3>
+						<p class="text-gray-600">Design og implementering af interaktive dashboards (Power BI, KNIME), der giver realtidsindsigt i dine nøglepræstationsindikatorer.</p>
+					</div>
+				</a>
+
+				<a href="excel-automations-da.html" class="block w-full">
+					<div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center h-80 hover:bg-gray-50 transition-colors duration-300">
+						<span class="text-5xl mb-4">⚙️</span>
+						<h3 class="text-xl font-semibold text-[#003366] mb-3">Procesautomatisering og optimering</h3>
+						<p class="text-gray-600">Effektiviser gentagne opgaver og forbedr driftseffektiviteten ved hjælp af Python, Power Query og KNIME-workflows.</p>
+					</div>
+				</a>
+
+			</div>
         </section>
 
         <section id="how-it-works" class="py-16 section-fade-in">
-            <h2 class="text-3xl font-bold text-center mb-4">Sådan fungerer det</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">At bruge mine freelancetjenester er en ligetil proces designet for effektivitet og klar kommunikation. Her er trinene:</p>
+            <h2 class="text-3xl font-bold text-center mb-4">Hvordan det virker</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">At hyre mine freelanceservices er en ligetil proces, der er designet for effektivitet og klar kommunikation. Her er trinene:</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                 <div class="flex flex-col items-center">
                     <div class="w-16 h-16 bg-[#005A8D] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
@@ -162,7 +199,7 @@
                 <div class="flex flex-col items-center">
                     <div class="w-16 h-16 bg-[#005A8D] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
                     <h3 class="text-xl font-semibold text-[#003366] mb-2">Forslag og aftale</h3>
-                    <p class="text-gray-600">Jeg leverer et detaljeret forslag, der skitserer projektets omfang, leverancer, tidslinje og priser.</p>
+                    <p class="text-gray-600">Jeg leverer et detaljeret forslag, der beskriver omfanget, leverancer, tidslinje og priser for dit projekt.</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="w-16 h-16 bg-[#005A8D] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
@@ -172,18 +209,18 @@
                 <div class="flex flex-col items-center">
                     <div class="w-16 h-16 bg-[#005A8D] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">4</div>
                     <h3 class="text-xl font-semibold text-[#003366] mb-2">Levering og support</h3>
-                    <p class="text-gray-600">Du modtager dit færdige projekt med løbende support og revisioner, hvis det er nødvendigt, for at sikre din tilfredshed.</p>
+                    <p class="text-gray-600">Modtag dit færdige projekt, med løbende support og revisioner efter behov for at garantere din tilfredshed.</p>
                 </div>
             </div>
         </section>
 
         <section id="my-profile" class="py-16 section-fade-in">
             <h2 class="text-3xl font-bold text-center mb-4">Min professionelle profil</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Denne sektion giver et detaljeret kig på min faglige baggrund, mine færdigheder og karrierevej, hvilket giver et omfattende overblik for dem, der er interesserede i min fulde profil.</p>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Denne sektion giver en detaljeret oversigt over min professionelle baggrund, færdigheder og karrierevej, hvilket giver et omfattende kig for dem, der er interesseret i min fulde profil.</p>
 
             <div id="skills-subsection" class="py-8">
                 <h3 class="text-2xl font-bold text-center mb-4">Nøglekompetencer</h3>
-                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">En visuel repræsentation af mine nøglekompetenceområder, der fremhæver min blanding af finansiel og teknisk ekspertise.</p>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">En visuel repræsentation af mine nøglefærdighedsområder, der fremhæver min blanding af finansiel og teknisk ekspertise.</p>
                 <div class="w-full">
                     <div class="chart-container">
                         <canvas id="skillsChart"></canvas>
@@ -196,8 +233,8 @@
                             <p class="text-gray-600">P&L-kontrol, regnskaber, afstemning, løsning af uoverensstemmelser, revisionsspor, økonomisk P&L, IFRS 9, GAAP.</p>
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-md">
-                            <h4 class="text-xl font-semibold text-[#003366] mb-3">Data og Business Intelligence</h4>
-                            <p class="text-gray-600">Microsoft Power BI, Power Query, KNIME, SQL, dataanalyse, dataautomatisering, Business Intelligence, dashboard-oprettelse.</p>
+                            <h4 class="text-xl font-semibold text-[#003366] mb-3">Data & Business Intelligence</h4>
+                            <p class="text-gray-600">Microsoft Power BI, Power Query, KNIME, SQL, dataanalyse, dataautomatisering, Business Intelligence, oprettelse af dashboards.</p>
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-md">
                             <h4 class="text-xl font-semibold text-[#003366] mb-3">Programmering og automatisering</h4>
@@ -213,7 +250,6 @@
                 <div class="relative max-w-3xl mx-auto">
                     <div class="timeline-line"></div>
                     <div id="timeline-container" class="space-y-12">
-                        <!-- Data will be dynamically injected here via JavaScript -->
                     </div>
                 </div>
             </div>
@@ -221,29 +257,24 @@
             <div id="education-subsection" class="py-8 mt-12 bg-white rounded-xl shadow-md px-8">
                 <div class="text-center">
                     <h3 class="text-2xl font-bold mb-4">Uddannelse og certificeringer</h3>
-                    <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Min akademiske baggrund og kontinuerlige læring gennem certificeringer er grundlaget for min tekniske og forretningsmæssige ekspertise.</p>
+                    <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Min akademiske baggrund og løbende læring gennem certificeringer danner grundlaget for min tekniske og forretningsmæssige ekspertise.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
                     <div>
                         <h4 class="text-xl font-semibold text-[#003366] mb-4">Uddannelse</h4>
-                        <div id="education-container" class="space-y-4">
-                            <!-- Data will be dynamically injected here via JavaScript -->
-                        </div>
+                        <div id="education-container" class="space-y-4"></div>
                     </div>
                     <div>
                         <h4 class="text-xl font-semibold text-[#003366] mb-4">Certificeringer</h4>
-                        <div id="certifications-container" class="space-y-2">
-                            <!-- Data will be dynamically injected here via JavaScript -->
-                        </div>
+                        <div id="certifications-container" class="space-y-4"></div>
                     </div>
                 </div>
             </div>
-
         </section>
 
         <section id="contact" class="py-16 section-fade-in">
-            <h2 class="text-3xl font-bold text-center mb-4">Klar til at transformere din virksomhed?</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Lad os starte en samtale om dine mål. Uanset om det er et enkelt projekt eller et løbende partnerskab, er jeg her for at hjælpe dig. Kontakt mig nedenfor for at komme i gang.</p>
+            <h2 class="text-3xl font-bold text-center mb-4">Kontakt</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Er du klar til at diskutere dit projekt eller har du et spørgsmål? Udfyld formularen nedenfor, og jeg vil vende tilbage til dig snarest. Alle forespørgsler sendes sikkert gennem formularen.</p>
             <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
                 <form action="https://formspree.io/f/mpwrevzq" method="POST" class="space-y-6" onsubmit="return validateForm()">
                     <div>
@@ -266,68 +297,120 @@
                 </div>
             </div>
         </section>
-
     </main>
-
+    
     <footer class="text-center py-8 mt-12 border-t border-gray-200">
-        <p class="text-gray-600">&copy; 2025 Pablo Trento. Alle rettigheder forbeholdes.</p>
+        <p class="text-gray-600">&copy; 2025 Pablo Trento.</p>
     </footer>
+	
+	<button id="open-calculator-btn" class="fixed bottom-12 right-12 bg-[#005A8D] text-white p-1 rounded-full shadow-lg hover:bg-[#004A7D] transition-colors duration-300 z-50 transform hover:scale-110">
+		<img src="assets/calc-icon.png" alt="Lommeregner ikon" class="h-12 w-12" />
+	</button>
 
+    <div id="calculator-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-button" id="close-calculator-btn">&times;</button>
+            <iframe id="calculator-iframe"></iframe>
+        </div>
+    </div>
+	
     <script>
+        const experienceData = [
+            {
+                company: "BNP Paribas CIB",
+                role: "Controller for resultatopgørelse (P&L)",
+                duration: "Jan 2025 – Jun 2025",
+                location: "Lissabon, Portugal",
+                details: [
+                    "Administrerede daglig/månedlig afstemning af økonomiske P&L-tal med regnskabsposter.",
+                    "Identificerede og løste uoverensstemmelser ved at samarbejde med Middle Office, Back Office, Market Risk og Finance-teams.",
+                    "Validerede P&L-tal for fastforrentede og obligationsprodukter.",
+                    "Støttede procesautomatisering ved hjælp af KNIME, Excel, SAP og Power Query.",
+                    "Sikrede overholdelse af IFRS 9 og GAAP (Europa)-standarder.",
+                    "Fungererede som en KNIME Champion, der fremmede automatisering og udviklede workflows."
+                ]
+            },
+            {
+                company: "BNP Paribas CIB",
+                role: "Controller for tilgodehavende gebyrer",
+                duration: "Maj 2024 – Feb 2025",
+                location: "Lissabon, Portugal",
+                details: [
+                    "Ansvarlig for beregning, overvågning, afstemning og betaling af forskellige gebyrfakturaer.",
+                    "Fungerede som hovedkontakt for relevante afdelinger og bidrog til teamets effektivitetsforbedringer."
+                ]
+            },
+            {
+                company: "Advotax",
+                role: "Finansiel og regnskabskonsulent",
+                duration: "Nov 2023 – Maj 2024",
+                location: "Storbritannien",
+                details: [
+                    "Fasiliterede regnskabs-, finans- og lovmæssig overholdelse for multinationale kunder i Storbritannien og USA.",
+                    "Udførte regnskabs- og økonomisk kontrol ved hjælp af Xero Accounting.",
+                    "Sikrede overholdelse ved nøjagtig udfyldelse af IRS-formularer (1120, 1120sg, 5472, w8, w9).",
+                    "Brugte Python og ChatGPT til at forbinde API'er og oprette porteføljer til sporing af kryptoinvesteringer.",
+                    "Designede tilpassede kontoplaner skræddersyet til tech-startups."
+                ]
+            },
+            {
+                company: "Mutual de Médicos y Personal Jerárquico del Hospital Privado",
+                role: "Bogholder og finansiel controller",
+                duration: "Jan 2015 – Jan 2024",
+                location: "Córdoba, Argentina",
+                details: [
+                    "Administrerede omfattende regnskab, finansiel kontrol og lønninger for en førende privat fond.",
+                    "Nøglepræstation: Succesfuld implementering af et elektronisk betalingssystem med elektronisk fakturering.",
+                    "Nøglepræstation: Ledede implementeringen af digitale løsninger til IT-forretningstransformation under pandemien.",
+                    "Nøglepræstation: Automatiserede statslige revisions- og regnskabsprocesser, hvilket forbedrede dataintegriteten og reducerede manuelt arbejde."
+                ]
+            }
+        ];
+
+        const educationData = [
+            { institution: "Universidad Tecnológica Nacional", degree: "Computerprogrammør-tekniker", year: "2021" },
+            { institution: "EALDE Business School", degree: "Master i risikostyring, MBA", year: "2018 - 2019" },
+            { institution: "Universidad Nacional de Córdoba", degree: "Bachelor i erhvervsøkonomi", year: "2008 - 2014" },
+            { institution: "Université Paris Dauphine", degree: "Master's Exchange MSO & LSO", year: "2013 - 2014" },
+        ];
+
+        const certificationsData = [
+            { name: "Power BI", url: "https://www.udemy.com/certificate/UC-fbab63fa-9317-4f10-a06b-d86fd3eacada/" },
+            { name: "Python TOTAL", url: "https://www.udemy.com/certificate/UC-379b5b73-f650-468b-a7a8-244ec4012e1d/" },
+            { name: "Proficiency in KNIME Analytics Platform", url: "https://www.credly.com/badges/05d138e0-db79-429d-b3f3-70916c53271f/linked_in_profile" }
+        ];
+
+        function validateForm() {
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (recaptchaResponse.length === 0) {
+                const messageBox = document.createElement('div');
+                messageBox.className = "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 bg-red-500 text-white rounded-lg shadow-xl z-[100]";
+                messageBox.innerHTML = "Bekræft venligst reCAPTCHA, før du sender beskeden.";
+                document.body.appendChild(messageBox);
+                setTimeout(() => messageBox.remove(), 3000);
+                return false;
+            }
+            return true;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-
-            // JavaScript data for the dynamic sections
-            const experienceData = [
-                {
-                    title: 'Finansiel Analytiker Senior',
-                    company: 'Krohn-hansen',
-                    year: 'Ene 2022 - Actualmente',
-                    description: 'Lider el análisis financiero y la modelización financiera para respaldar las decisiones estratégicas de la empresa. Mi trabajo incluye pronósticos, presupuestos y análisis de mercado en profundidad. También administro el control de P&L y creo informes visuales en Power BI para la gerencia.',
-                },
-                {
-                    title: 'Gerente de Contabilidad y Administración',
-                    company: 'García y Asociados',
-                    year: 'Jun 2017 - Dic 2021',
-                    description: 'Fui responsable de las operaciones financieras diarias, incluyendo conciliaciones, gestión de cuentas por pagar y por cobrar, y la preparación de estados financieros mensuales. Implementé soluciones de automatización en Excel que redujeron la carga de trabajo manual en un 30%, mejorando la eficiencia de todo el departamento.',
-                },
-                {
-                    title: 'Consultor financiero',
-                    company: 'Autónomo',
-                    year: 'Ago 2014 - May 2017',
-                    description: 'Ofrecí asesoramiento financiero y soluciones personalizadas a pequeñas y medianas empresas. Mi enfoque fue en optimizar sus procesos de contabilidad y presentación de informes, utilizando especialmente herramientas de análisis de datos para identificar ahorros de costos y nuevas oportunidades de negocio.',
-                },
-            ];
-
-
-			const educationData = [
-				{ institution: "Universidad Tecnológica Nacional", degree: "Technician, Computer Programming", year: "2021" },
-				{ institution: "EALDE Business School", degree: "Risk Management Master, MBA", year: "2018 - 2019" },
-				{ institution: "Universidad Nacional de Córdoba", degree: "Bachelor in Business Administration", year: "2008 - 2014" },
-				{ institution: "Université Paris Dauphine", degree: "Exchange Master MSO & LSO", year: "2013 - 2014" },
-			];
-
-
-			const certificationsData = [
-				{ name: "Power BI", url: "https://www.udemy.com/certificate/UC-fbab63fa-9317-4f10-a06b-d86fd3eacada/" },
-				{ name: "Python TOTAL", url: "https://www.udemy.com/certificate/UC-379b5b73-f650-468b-a7a8-244ec4012e1d/" },
-				{ name: "Proficiency in KNIME Analytics Platform", url: "https://www.credly.com/badges/05d138e0-db79-429d-b3f3-70916c53271f/linked_in_profile" }
-			];            
-            // Skills Chart - Using Chart.js
-            const ctx = document.getElementById('skillsChart').getContext('2d');
-            const skillsChart = new Chart(ctx, {
-                type: 'radar',
+            const skillsCtx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(skillsCtx, {
+                type: 'polarArea',
                 data: {
-                    labels: ['Finansiel analyse', 'Dataanalyse', 'Automatisering', 'Forretningsindsigt', 'Regnskab', 'Rapportering'],
+                    labels: ['Finansiel analyse', 'Business Intelligence', 'Programmering og automatisering', 'Regnskab', 'Software færdigheder'],
                     datasets: [{
-                        label: 'Min ekspertise',
-                        data: [5, 5, 4, 5, 5, 5],
-                        fill: true,
-                        backgroundColor: 'rgba(0, 90, 141, 0.2)',
-                        borderColor: '#005A8D',
-                        pointBackgroundColor: '#005A8D',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#005A8D'
+                        label: 'Færdighedsniveau',
+                        data: [90, 95, 85, 80, 92],
+                        backgroundColor: [
+                            'rgba(0, 51, 102, 0.7)',
+                            'rgba(0, 90, 141, 0.7)',
+                            'rgba(77, 137, 179, 0.7)',
+                            'rgba(142, 184, 217, 0.7)',
+                            'rgba(207, 231, 247, 0.7)'
+                        ],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -335,39 +418,66 @@
                     maintainAspectRatio: false,
                     scales: {
                         r: {
-                            angleLines: {
-                                display: false
+                            pointLabels: {
+                                display: true,
+                                centerPointLabels: true,
+                                font: {
+                                    size: 14
+                                }
                             },
-                            suggestedMin: 0,
-                            suggestedMax: 5,
                             ticks: {
-                                display: false
+                               display: false 
+                            },
+                             grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
                             }
                         }
                     },
                     plugins: {
                         legend: {
-                            display: false,
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 12,
+                                    family: 'Inter'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}% færdighed`;
+                                }
+                            }
                         }
                     }
                 }
             });
 
-            // Populate Experience section
             const timelineContainer = document.getElementById('timeline-container');
-            experienceData.forEach(job => {
+            experienceData.forEach(item => {
                 const div = document.createElement('div');
-                div.className = "relative pl-12 timeline-item";
+                div.className = 'relative pl-8 timeline-item';
                 div.innerHTML = `
-                    <h4 class="text-xl font-semibold text-[#003366]">${job.title}</h4>
-                    <p class="text-lg text-gray-700">${job.company}</p>
-                    <p class="text-sm text-gray-500">${job.year}</p>
-                    <p class="mt-2 text-gray-600">${job.description}</p>
+                    <div class="cursor-pointer">
+                        <h3 class="text-xl font-bold text-[#003366]">${item.role}</h3>
+                        <p class="font-semibold text-gray-700">${item.company}</p>
+                        <p class="text-sm text-gray-500">${item.duration} | ${item.location}</p>
+                    </div>
+                    <div class="details hidden mt-4 pl-4 border-l-2 border-gray-200">
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            ${item.details.map(d => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </div>
                 `;
                 timelineContainer.appendChild(div);
+
+                div.querySelector('.cursor-pointer').addEventListener('click', () => {
+                    const details = div.querySelector('.details');
+                    details.classList.toggle('hidden');
+                });
             });
 
-            // Populate Education section
             const educationContainer = document.getElementById('education-container');
             educationData.forEach(edu => {
                 const div = document.createElement('div');
@@ -379,7 +489,6 @@
                 educationContainer.appendChild(div);
             });
 
-            // Populate Certifications section
             const certificationsContainer = document.getElementById('certifications-container');
             certificationsData.forEach(cert => {
                 const p = document.createElement('p');
@@ -387,8 +496,7 @@
                 p.innerHTML = `✓ <a href="${cert.url}" target="_blank" class="text-[#005A8D] hover:underline">${cert.name}</a>`;
                 certificationsContainer.appendChild(p);
             });
-
-            // Intersection Observer for fade-in effect
+            
             const fader = (entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -400,23 +508,22 @@
             const observer = new IntersectionObserver(fader);
             const sections = document.querySelectorAll('.section-fade-in');
             sections.forEach(section => observer.observe(section));
+			
+			const openBtn = document.getElementById('open-calculator-btn');
+			const closeBtn = document.getElementById('close-calculator-btn');
+			const modal = document.getElementById('calculator-modal');
+			const iframe = document.getElementById('calculator-iframe');
 
+			openBtn.addEventListener('click', () => {
+				iframe.src = 'fin-calc-pop-2.html';
+				modal.classList.add('show');
+			});
+
+			closeBtn.addEventListener('click', () => {
+				modal.classList.remove('show');
+				iframe.src = '';
+			});
         });
-        
-        // Function to validate reCAPTCHA before form submission
-        function validateForm() {
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (recaptchaResponse.length === 0) {
-                // I have replaced 'alert' with a more user-friendly message
-                const messageBox = document.createElement('div');
-                messageBox.className = "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 bg-red-500 text-white rounded-lg shadow-xl z-[100]";
-                messageBox.innerHTML = "Venligst bekræft reCAPTCHA, før du sender beskeden.";
-                document.body.appendChild(messageBox);
-                setTimeout(() => messageBox.remove(), 3000); // The message disappears after 3 seconds
-                return false;
-            }
-            return true;
-        }
     </script>
 </body>
 </html>

@@ -53,6 +53,53 @@
         .text-accent-blue {
             color: #005A8D; /* Azul de acento para íconos */
         }
+		
+		/* Estilos para el modal flotante, ahora adaptable */
+		.modal-overlay {
+			position: fixed;
+			bottom: 1rem;
+			right: 1rem;
+			width: auto;
+			height: auto;
+			background: transparent; /* Quita oscurecimiento */
+			display: none; /* Inicialmente oculto */
+			z-index: 2000;
+		}
+
+		.modal-overlay.show {
+			display: block;
+		}
+
+		.modal-content {
+			background-color: transparent;
+			border-radius: 0.75rem;
+			box-shadow: none;
+			padding: 0;
+			width: auto;
+			height: auto;
+		}
+
+		#calculator-iframe {
+			width: 400px;
+			height: 400px;
+			border: none;
+		}
+
+		.close-button {
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			background: #f44336;
+			color: #fff;
+			border-radius: 50%;
+			width: 28px;
+			height: 28px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1rem;
+			cursor: pointer;
+		}
     </style>
 </head>
 <body class="antialiased">
@@ -61,7 +108,7 @@
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="text-xl font-bold text-primary-blue">WorkFlows</div>
             <div class="hidden md:flex space-x-8">
-				<a href="index.html" class="nav-link text-gray-600 font-medium">Home</a>
+				<a href="index-es.html" class="nav-link text-gray-600 font-medium">Home</a>
                 <a href="#hero" class="nav-link text-gray-600 font-medium active">Up</a>
 				<a href="#contact" class="nav-link text-gray-600 font-medium">Contacto</a>
 				<!-- Language Selector -->
@@ -81,10 +128,10 @@
         <section id="hero" class="hero-background text-center min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center items-center py-16 section-fade-in">
             <div class="px-6">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-primary-blue mb-4 drop-shadow-md">
-                    ¿Cansado de la batalla diaria con planillas de Excel desordenadas?
+                    ¡Libérate del Caos de Excel y Aumenta tu Productividad!
                 </h1>
                 <p class="text-xl md:text-2xl font-light text-gray-700 mb-8 max-w-4xl mx-auto drop-shadow-sm">
-                    Yo me he enfrentado a los mismos desafíos. Con 11 años de experiencia en finanzas, he creado soluciones simples y de bajo costo para que tomes el control de tus datos sin sistemas complejos.
+                    Con mas de 11 años de experiencia de trabajar con Excel, me he enfrentado continuamente a los mismos desafíos y he creado soluciones simples y de bajo costo que permitan tomar control de los datos sin sistemas complejos.
                 </p>
                 <a href="#contact" class="cta-button text-white font-bold py-3 px-8 rounded-full hover:bg-[#DC2626] transition-all duration-300 shadow-lg">
                     Agenda tu consultoría gratuita de 30 minutos
@@ -109,30 +156,30 @@
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-sm">
                         <span class="text-5xl mb-4 text-accent-blue">⏳</span>
                         <h3 class="text-xl font-semibold text-primary-blue mb-2">Pérdida de tiempo</h3>
-                        <p class="text-gray-600">Horas valiosas perdidas copiando y pegando datos repetidamente cada mes.</p>
+                        <p class="text-gray-600">Horas valiosas perdidas copiando y pegando datos manualmente cada mes.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-sm">
                         <span class="text-5xl mb-4 text-accent-blue">🤔</span>
                         <h3 class="text-xl font-semibold text-primary-blue mb-2">Decisiones a ciegas</h3>
-                        <p class="text-gray-600">Falta de información clara para tomar decisiones estratégicas.</p>
+                        <p class="text-gray-600">Falta de información clara para tomar decisiones estratégicas y eficaces.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-sm">
                         <span class="text-5xl mb-4 text-accent-blue">💰</span>
                         <h3 class="text-xl font-semibold text-primary-blue mb-2">Sistemas costosos</h3>
-                        <p class="text-gray-600">La creencia de que necesitas invertir miles en sistemas complejos.</p>
+                        <p class="text-gray-600">La creencia de que hay que gastar miles en sistemas complejos que quizás no necesitas.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección 3: La solución (Presenta tu oferta de valor) -->
+        <!-- Sección 3: La solución (oferta de valor) -->
         <section id="solution" class="py-16 section-fade-in">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div class="order-2 lg:order-1">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary-blue">La solución no es cambiar, es optimizar.</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary-blue">La solucion es optimizar de forma simple y a tu medida.</h2>
                         <p class="text-lg text-gray-600 mb-6">
-                            No necesitas abandonar tus planillas de Excel ni implementar un ERP. Con mi experiencia y herramientas **no-code**, puedo estandarizar y automatizar tus procesos para que funcionen a tu favor.
+                            No tienes por qué abandonar tus planillas de Excel, cambiar procesos que ya son eficaces, ni implementar un ERP. Con mis servicios, podemos estandarizar y automatizar tus procesos utilizando herramientas no-code (como KNIME), flexibles y de bajo costo.
                         </p>
                         <ul class="space-y-4 text-gray-700">
                             <li class="flex items-start">
@@ -150,7 +197,7 @@
                         </ul>
                     </div>
                     <div class="order-1 lg:order-2 flex justify-center">
-                        <!-- He actualizado la ruta de la imagen según tu solicitud -->
+                        <!-- imagen sulición -->
                         <img src="assets/solution-pers.png" alt="Imagen de solución personalizada" class="rounded-xl shadow-lg w-full max-w-lg">
                     </div>
                 </div>
@@ -161,61 +208,77 @@
         <section id="tools" class="py-16 bg-white section-fade-in">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue">Herramientas que Potencian tu Negocio</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center max-w-6xl mx-auto">
+				<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center max-w-6xl mx-auto">
                     <!-- Contenedor para el logo de Excel -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-excel.png" alt="Logo de Microsoft Excel" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <!-- Contenedor para el logo de Power Query -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-powerquery.png" alt="Logo de Power Query" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <!-- Contenedor para el logo de Power BI -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-powerbi.png" alt="Logo de Power BI" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <!-- Contenedor para el logo de KNIME -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-knime.png" alt="Logo de KNIME" class="max-w-full max-h-full object-contain">
-                    </div>
+					<a href="https://www.microsoft.com/es-es/microsoft-365/excel" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+						<img src="assets/logo-excel.png" alt="Logo de Microsoft Excel" class="max-w-full max-h-full object-contain">
+					</a>
+					
                     <!-- Contenedor para el logo de Google Sheets -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-googlesheets.png" alt="Logo de Google Sheets" class="max-w-full max-h-full object-contain">
-                    </div>
+					<a href="https://www.google.com/intl/es_es/sheets/about/" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+						<img src="assets/logo-googlesheets.png" alt="Logo de Google Sheets" class="max-w-full max-h-full object-contain">
+					</a>
+					<!-- Contenedor para el logo de Power Query -->
+
+					<a href="https://learn.microsoft.com/es-es/power-query/" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+						<img src="assets/logo-powerquery.png" alt="Logo de Power Query" class="max-w-full max-h-full object-contain">
+					</a>
+                    <!-- Contenedor para el logo de Power BI -->
+
+					<a href="https://powerbi.microsoft.com/es-es/" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+						<img src="assets/logo-powerbi.png" alt="Logo de Power BI" class="max-w-full max-h-full object-contain">
+					</a>
+                    <!-- Contenedor para el logo de KNIME -->
+
+					<a href="https://www.knime.com" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+						<img src="assets/logo-knime.png" alt="Logo de KNIME" class="max-w-full max-h-full object-contain">
+					</a>
                     <!-- Contenedor para el logo de SQL -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-sql.png" alt="Logo de SQL" class="max-w-full max-h-full object-contain">
-                    </div>
-                </div>
+
+					<a href="https://www.mysql.com/es/" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+						<img src="assets/logo-sql.png" alt="Logo de SQL" class="max-w-full max-h-full object-contain">
+					</a>
+				</div>
             </div>
         </section>
 
-        <!-- Sección 5: Mi proceso de trabajo (Genera confianza y claridad) -->
+        <!-- Sección 5: proceso de trabajo -->
         <section id="process" class="py-16 section-fade-in">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-primary-blue">¿Cómo lo logramos?</h2>
-                <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                    Enganchar mis servicios es un proceso simple y diseñado para tu comodidad y el éxito de tu proyecto.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <p class="text-center text-gray-600 mb-3 max-w-3xl mx-auto">
+                    Con un enfoque simple, diseñado para tu comodidad y el éxito de tu proyecto.
+				</p>
+				 <p class="text-center text-gray-600 mb-3 max-w-3xl mx-auto">	
+					Con más de 11 años de experiencia en finanzas, operaciones y administración, entiendo los desafíos de gestionar un negocio con hojas de cálculo.
+				</p>
+                <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">	
+					Mi objetivo es optimizar tus procesos sin necesidad de sistemas caros y complejos.
+				</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
-                        <div class="w-16 h-16 bg-accent-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
-                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Entrevista inicial</h3>
-                        <p class="text-gray-600">Discutimos tus desafíos y objetivos en una llamada gratuita de 30 minutos.</p>
+						<div class="w-16 h-16 bg-gradient-to-r from-sky-400 to-indigo-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">1</div>
+						<h3 class="text-xl font-semibold text-primary-blue mb-2">Entrevista inicial</h3>
+                        <p class="text-gray-600">Hablamos de tus desafíos, objetivos y los procesos que quieres mejorar. Es una llamada gratuita de 30 minutos.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
-                        <div class="w-16 h-16 bg-accent-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
-                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Propuesta y acuerdo</h3>
+						<div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">2</div>
+						<h3 class="text-xl font-semibold text-primary-blue mb-2">Relevamiento y análisis</h3>
+                        <p class="text-gray-600">Luego de la entrevista inicial, pasaremos a realizar el relevamiento detallado de los procesos y recursos implicados.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
+						<div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-fuchsia-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">3</div>
+						<h3 class="text-xl font-semibold text-primary-blue mb-2">Propuesta y acuerdo</h3>
                         <p class="text-gray-600">Te presento una propuesta detallada con el alcance, plazos y costos.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
-                        <div class="w-16 h-16 bg-accent-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
-                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Ejecución colaborativa</h3>
+                        <div class="w-16 h-16 bg-gradient-to-r from-fuchsia-400 to-rose-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">4</div>
+						<h3 class="text-xl font-semibold text-primary-blue mb-2">Ejecución colaborativa</h3>
                         <p class="text-gray-600">Implementamos la solución con actualizaciones periódicas para asegurar que cumpla tus expectativas.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
-                        <div class="w-16 h-16 bg-accent-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">4</div>
-                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Entrega y soporte</h3>
+                        <div class="w-16 h-16 bg-gradient-to-r from-rose-400 to-pink-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">5</div>
+						<h3 class="text-xl font-semibold text-primary-blue mb-2">Entrega y soporte</h3>
                         <p class="text-gray-600">Recibes tu proyecto finalizado, con el soporte necesario para que sea un éxito.</p>
                     </div>
                 </div>
@@ -258,7 +321,22 @@
     <footer class="text-center py-8 mt-12 border-t border-gray-200">
         <p class="text-gray-600">&copy; 2025 Pablo Trento. Todos los derechos reservados.</p>
     </footer>
+	
+	<!-- Botón Flotante para abrir la calculadora -->
+    <button id="open-calculator-btn" class="fixed bottom-12 right-12 bg-[#005A8D] text-white p-1 rounded-full shadow-lg hover:bg-[#004A7D] transition-colors duration-300 z-50 transform hover:scale-110">
+		<img src="assets/calc-icon.png" alt="Icono de Calculadora" class="h-12 w-12" />
+	</button>
 
+    <!-- Ventana Modal de la Calculadora (oculta por defecto) -->
+    <div id="calculator-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-button" id="close-calculator-btn">&times;</button>
+            <!-- Aquí se cargará el contenido de calculator.html -->
+            <iframe id="calculator-iframe"></iframe>
+        </div>
+    </div>
+
+	
     <script>
         // Función para validar el reCAPTCHA antes de enviar el formulario
         function validateForm() {
@@ -287,6 +365,25 @@
             const observer = new IntersectionObserver(fader);
             const sections = document.querySelectorAll('.section-fade-in');
             sections.forEach(section => observer.observe(section));
+			
+			// Lógica para la ventana modal
+			const openBtn = document.getElementById('open-calculator-btn');
+			const closeBtn = document.getElementById('close-calculator-btn');
+			const modal = document.getElementById('calculator-modal');
+			const iframe = document.getElementById('calculator-iframe');
+
+			openBtn.addEventListener('click', () => {
+				iframe.src = 'fin-calc-pop-2.html';
+				modal.classList.add('show');
+			});
+
+			closeBtn.addEventListener('click', () => {
+				modal.classList.remove('show');
+				iframe.src = '';
+			});
+			
+			
+			
         });
     </script>
 </body>

@@ -69,6 +69,53 @@
             opacity: 1;
             transform: translateY(0);
         }
+		
+		/* Estilos para el modal flotante, ahora adaptable */
+		.modal-overlay {
+			position: fixed;
+			bottom: 1rem;
+			right: 1rem;
+			width: auto;
+			height: auto;
+			background: transparent; /* Quita oscurecimiento */
+			display: none; /* Inicialmente oculto */
+			z-index: 2000;
+		}
+
+		.modal-overlay.show {
+			display: block;
+		}
+
+		.modal-content {
+			background-color: transparent;
+			border-radius: 0.75rem;
+			box-shadow: none;
+			padding: 0;
+			width: auto;
+			height: auto;
+		}
+
+		#calculator-iframe {
+			width: 400px;
+			height: 400px;
+			border: none;
+		}
+
+		.close-button {
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			background: #f44336;
+			color: #fff;
+			border-radius: 50%;
+			width: 28px;
+			height: 28px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1rem;
+			cursor: pointer;
+		}
     </style>
 </head>
 <body class="antialiased">
@@ -77,10 +124,8 @@
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="text-xl font-bold text-gray-800">Pablo Trento</div>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#home" class="nav-link text-gray-600 font-medium">Inicio</a>
-                <a href="excel-automations-es.html" class="nav-link text-gray-600 font-medium">Servicios de Automatización</a>
-                <a href="#services" class="nav-link text-gray-600 font-medium">Servicios</a>
-                <a href="#how-it-works" class="nav-link text-gray-600 font-medium">Cómo Funciona</a>
+                <a href="#home" class="nav-link text-gray-600 font-medium">Up</a>
+                <a href="excel-automations-es.html" class="nav-link text-gray-600 font-medium">Servicios de Automatización</a>            
                 <a href="#my-profile" class="nav-link text-gray-600 font-medium">Mi Perfil</a>
                 <a href="#contact" class="nav-link text-gray-600 font-medium">Contacto</a>
                 <!-- Selector de idioma -->
@@ -105,49 +150,44 @@
             <h1 class="text-4xl md:text-6xl font-extrabold text-[#003366] mb-4">Pablo Trento</h1>
             <p class="text-xl md:text-2xl font-light text-gray-700 mb-8 max-w-4xl">Tu Socio en Datos Financieros, Inteligencia de Negocios y Automatización de Procesos</p>
             <p class="max-w-3xl mx-auto text-base md:text-lg text-gray-600 leading-relaxed mb-8">
-                Ayudo a las empresas a cerrar la brecha entre las finanzas y los datos, impulsando la eficiencia y los conocimientos a través de la automatización y el análisis. Transformemos juntos tus operaciones financieras.
+                Ayudo a las empresas a cerrar la brecha entre las finanzas y los datos, impulsando la eficiencia y los conocimientos a través de la automatización y el análisis de procesos.
             </p>
             <div class="flex space-x-4">
-                <a href="#services" class="bg-[#005A8D] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#004772] transition-colors">Explora Mis Servicios</a>
-                <a href="#contact" class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Ponte en Contacto</a>
+                <a href="#services" class="bg-gradient-to-r from-sky-400 to-indigo-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-[#004772] transition-colors">Soluciones</a>
+                <a href="#contact" class="bg-gray-300 text-black-200 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Contacto</a>
             </div>
         </section>
 
         <section id="services" class="py-16 section-fade-in">
-            <h2 class="text-3xl font-bold text-center mb-4">Mis Servicios</h2>
+            <h2 class="text-3xl font-bold text-center mb-4">Servicios</h2>
             <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Ofrezco servicios freelance especializados diseñados para optimizar tus procesos financieros e impulsar decisiones basadas en datos. Así es como puedo ayudar a tu negocio a prosperar:</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">📊</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Análisis y Reportes de Datos Financieros</h3>
-                    <p class="text-gray-600">Transforma datos financieros brutos en insights claros y procesables. Desde análisis de P&L hasta estados financieros completos, garantizando precisión e integridad.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">📈</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Desarrollo de Paneles de Inteligencia de Negocios</h3>
-                    <p class="text-gray-600">Diseño e implementación de paneles interactivos (Power BI, KNIME) que proporcionan visibilidad en tiempo real de tus indicadores clave de rendimiento.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">⚙️</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Automatización y Optimización de Procesos</h3>
-                    <p class="text-gray-600">Agiliza tareas repetitivas y mejora la eficiencia operativa utilizando Python, Power Query y flujos de trabajo de KNIME.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">💰</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Modelado Financiero Personalizado</h3>
-                    <p class="text-gray-600">Desarrollo de modelos financieros sólidos para pronósticos, presupuestos y planificación estratégica, adaptados a las necesidades específicas de tu negocio.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">⚖️</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Consultoría de Cumplimiento Normativo</h3>
-                    <p class="text-gray-600">Garantizo el cumplimiento de las regulaciones financieras (IFRS 9, GAAP, formularios del IRS) con orientación experta y documentación meticulosa.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4">💡</span>
-                    <h3 class="text-xl font-semibold text-[#003366] mb-3">Proyectos Financieros y de Datos Ad-hoc</h3>
-                    <p class="text-gray-600">Soporte flexible para análisis financiero, integración de datos o desafíos de automatización únicos que tu negocio pueda enfrentar.</p>
-                </div>
-            </div>
+			
+				<a href="#contact" class="block w-full">
+					<div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center h-80 hover:bg-gray-50 transition-colors duration-300">
+						<span class="text-5xl mb-4">📊</span>
+						<h3 class="text-xl font-semibold text-[#003366] mb-3">Análisis y Reportes de Datos Financieros</h3>
+						<p class="text-gray-600">Transforma datos financieros brutos en insights claros y procesables. Desde análisis de P&L hasta estados financieros completos, garantizando precisión e integridad.</p>
+					</div>
+				</a>
+
+				<a href="#contact" class="block w-full">
+					<div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center h-80 hover:bg-gray-50 transition-colors duration-300">
+						<span class="text-5xl mb-4">📈</span>
+						<h3 class="text-xl font-semibold text-[#003366] mb-3">Desarrollo de Paneles de Inteligencia de Negocios</h3>
+						<p class="text-gray-600">Diseño e implementación de paneles interactivos (Power BI, KNIME) que proporcionan visibilidad en tiempo real de tus indicadores clave de rendimiento.</p>
+					</div>
+				</a>
+
+				<a href="excel-automations-es.html" class="block w-full">
+					<div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center h-80 hover:bg-gray-50 transition-colors duration-300">
+						<span class="text-5xl mb-4">⚙️</span>
+						<h3 class="text-xl font-semibold text-[#003366] mb-3">Automatización y Optimización de Procesos</h3>
+						<p class="text-gray-600">Agiliza tareas repetitivas y mejora la eficiencia operativa utilizando Python, Power Query y flujos de trabajo de KNIME.</p>
+					</div>
+				</a>
+
+			</div>
         </section>
 
         <section id="how-it-works" class="py-16 section-fade-in">
@@ -265,7 +305,21 @@
     <footer class="text-center py-8 mt-12 border-t border-gray-200">
         <p class="text-gray-600">&copy; 2025 Pablo Trento.</p>
     </footer>
+	
+	<!-- Botón Flotante para abrir la calculadora -->
+    <button id="open-calculator-btn" class="fixed bottom-12 right-12 bg-[#005A8D] text-white p-1 rounded-full shadow-lg hover:bg-[#004A7D] transition-colors duration-300 z-50 transform hover:scale-110">
+		<img src="assets/calc-icon.png" alt="Icono de Calculadora" class="h-12 w-12" />
+	</button>
 
+    <!-- Ventana Modal de la Calculadora (oculta por defecto) -->
+    <div id="calculator-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-button" id="close-calculator-btn">&times;</button>
+            <!-- Aquí se cargará el contenido de calculator.html -->
+            <iframe id="calculator-iframe"></iframe>
+        </div>
+    </div>
+	
     <script>
         const experienceData = [
             {
@@ -414,7 +468,7 @@
                     </div>
                     <div class="details hidden mt-4 pl-4 border-l-2 border-gray-200">
                         <ul class="list-disc list-inside space-y-2 text-gray-600">
-                            ${item.details.map(d => `<li>${d}</li>`).join('')}
+                            ${item.details.map(d => '<li>${d}</li>').join('')}
                         </ul>
                     </div>
                 `;
@@ -456,6 +510,22 @@
             const observer = new IntersectionObserver(fader);
             const sections = document.querySelectorAll('.section-fade-in');
             sections.forEach(section => observer.observe(section));
+			
+			// Lógica para la ventana modal
+			const openBtn = document.getElementById('open-calculator-btn');
+			const closeBtn = document.getElementById('close-calculator-btn');
+			const modal = document.getElementById('calculator-modal');
+			const iframe = document.getElementById('calculator-iframe');
+
+			openBtn.addEventListener('click', () => {
+				iframe.src = 'fin-calc-pop-2.html';
+				modal.classList.add('show');
+			});
+
+			closeBtn.addEventListener('click', () => {
+				modal.classList.remove('show');
+				iframe.src = '';
+			});
         });
     </script>
 </body>

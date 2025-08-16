@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pablo Trento - Ekspert i finansielle data og automatisering</title>
+    <title>Pablo Trento - Eksperter i automatisering og finansielle data</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,14 +32,14 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Class for the hero section background */
+        /* Hero background */
         .hero-background {
             background-image: linear-gradient(rgba(248, 247, 244, 0.8), rgba(248, 247, 244, 0.8)), url('assets/workFlow-1.jpeg');
             background-size: cover;
             background-position: center;
         }
         .cta-button {
-            background-color: #EF4444; /* Vibrant red color for the CTA */
+            background-color: #EF4444; /* Vibrant red for CTA */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
         .cta-button:hover {
@@ -53,6 +53,53 @@
         .text-accent-blue {
             color: #005A8D; /* Accent blue for icons */
         }
+        
+        /* Floating modal styles (responsive) */
+        .modal-overlay {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: auto;
+            height: auto;
+            background: transparent; /* No dim background */
+            display: none; /* Initially hidden */
+            z-index: 2000;
+        }
+
+        .modal-overlay.show {
+            display: block;
+        }
+
+        .modal-content {
+            background-color: transparent;
+            border-radius: 0.75rem;
+            box-shadow: none;
+            padding: 0;
+            width: auto;
+            height: auto;
+        }
+
+        #calculator-iframe {
+            width: 400px;
+            height: 400px;
+            border: none;
+        }
+
+        .close-button {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #f44336;
+            color: #fff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -60,15 +107,14 @@
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="text-xl font-bold text-primary-blue">WorkFlows</div>
-            <div class="hidden md:flex space-x-8 items-center">
+            <div class="hidden md:flex space-x-8">
                 <a href="index-da.html" class="nav-link text-gray-600 font-medium">Hjem</a>
-                <a href="#hero" class="nav-link text-gray-600 font-medium active">Op</a>
+                <a href="#hero" class="nav-link text-gray-600 font-medium active">Top</a>
                 <a href="#contact" class="nav-link text-gray-600 font-medium">Kontakt</a>
-                <!-- Language Selector -->
                 <div class="ml-4 flex space-x-2">
                     <a href="excel-automations-es.html" class="text-gray-600 hover:text-[#005A8D]">ES</a>
                     <span class="text-gray-400">|</span>
-                    <a href="excel-automations.html" class="text-gray-600 hover:text-[#005A8D]">EN</a>
+                    <a href="excel-automations-en.html" class="text-gray-600 hover:text-[#005A8D]">EN</a>
                     <span class="text-gray-400">|</span>
                     <a href="excel-automations-da.html" class="font-semibold text-[#005A8D]">DA</a>
                 </div>
@@ -77,156 +123,156 @@
     </header>
 
     <main>
-        <!-- Section 1: Hero -->
         <section id="hero" class="hero-background text-center min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center items-center py-16 section-fade-in">
             <div class="px-6">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-primary-blue mb-4 drop-shadow-md">
-                    Træt af den daglige kamp med rodede Excel-regneark?
+                    Slip fri af Excel-kaos og boost din produktivitet!
                 </h1>
                 <p class="text-xl md:text-2xl font-light text-gray-700 mb-8 max-w-4xl mx-auto drop-shadow-sm">
-                    Jeg har stået over for de samme udfordringer. Med 11 års erfaring inden for finans har jeg skabt enkle, billige løsninger, der hjælper dig med at få kontrol over dine data uden komplekse systemer.
+                    Med over 11 års praktisk erfaring med Excel har jeg stået over for de samme udfordringer igen og igen og har bygget simple, billige løsninger, der giver dig kontrol over dine data uden komplekse systemer.
                 </p>
                 <a href="#contact" class="cta-button text-white font-bold py-3 px-8 rounded-full hover:bg-[#DC2626] transition-all duration-300 shadow-lg">
                     Book din gratis 30-minutters konsultation
                 </a>
-                <p class="text-sm text-gray-600 mt-4">Få en uforpligtende og gratis diagnose.</p>
+                <p class="text-sm text-gray-600 mt-4">Få en uforpligtende vurdering uden omkostninger.</p>
             </div>
         </section>
 
-        <!-- Section 2: The Problem (Connects with the client's pain points) -->
         <section id="problem" class="py-16 bg-white section-fade-in">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-primary-blue">Lyder dette bekendt?</h2>
                 <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                    Du ved, din virksomhed vokser, men dine drifts- og finansielle processer føles fastlåste. Du oplever konstant:
+                    Din virksomhed vokser, men dine operationelle og finansielle processer føles fastlåste. Du støder konstant på:
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-sm">
                         <span class="text-5xl mb-4 text-accent-blue">📂</span>
                         <h3 class="text-xl font-semibold text-primary-blue mb-2">Uorganiserede filer</h3>
-                        <p class="text-gray-600">Filer, der forsvinder, og data, der er svære at finde til dine rapporter.</p>
+                        <p class="text-gray-600">Filer forsvinder, og data er svære at finde, når du skal rapportere.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-sm">
                         <span class="text-5xl mb-4 text-accent-blue">⏳</span>
-                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Spildt tid</h3>
-                        <p class="text-gray-600">Værdifulde timer spildt på gentagne gange at kopiere og indsætte data hver måned.</p>
+                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Spildtid</h3>
+                        <p class="text-gray-600">Timer tabt hver måned på manuelt at kopiere og indsætte data.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-sm">
                         <span class="text-5xl mb-4 text-accent-blue">🤔</span>
-                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Blinde beslutninger</h3>
-                        <p class="text-gray-600">Mangel på klar information til at træffe strategiske beslutninger.</p>
+                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Blind beslutningstagning</h3>
+                        <p class="text-gray-600">Mangel på klar information til at træffe strategiske og effektive beslutninger.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-sm">
                         <span class="text-5xl mb-4 text-accent-blue">💰</span>
                         <h3 class="text-xl font-semibold text-primary-blue mb-2">Dyre systemer</h3>
-                        <p class="text-gray-600">Troen på, at du skal investere tusindvis af kroner i komplekse systemer.</p>
+                        <p class="text-gray-600">Tror du skal bruge tusindvis på komplekse systemer, du måske ikke har brug for.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 3: The Solution (Presents your value proposition) -->
         <section id="solution" class="py-16 section-fade-in">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div class="order-2 lg:order-1">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary-blue">Løsningen er ikke at skifte, men at optimere.</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary-blue">Løsningen er simpel, skræddersyet optimering.</h2>
                         <p class="text-lg text-gray-600 mb-6">
-                            Du behøver ikke at opgive dine Excel-regneark eller implementere et ERP-system. Med min erfaring og **no-code**-værktøjer kan jeg standardisere og automatisere dine processer, så de arbejder for dig.
+                            Du behøver ikke at opgive dine Excel-regneark, ændre processer, der allerede virker, eller implementere et ERP. Med mine tjenester kan vi standardisere og automatisere dine processer ved hjælp af no-code værktøjer (som KNIME), der er fleksible og billige.
                         </p>
                         <ul class="space-y-4 text-gray-700">
                             <li class="flex items-start">
                                 <span class="text-2xl mr-3 text-accent-blue">✔</span>
-                                <p><strong>Skræddersyede løsninger:</strong> Fra makroautomatisering til udvikling af specialapplikationer.</p>
+                                <p><strong>Skræddersyede løsninger:</strong> Fra makroautomatisering til opbygning af skræddersyede applikationer.</p>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-2xl mr-3 text-accent-blue">✔</span>
-                                <p><strong>Enkel og hurtig proces:</strong> Implementering med minimal forstyrrelse af din hverdag.</p>
+                                <p><strong>Simpel, hurtig proces:</strong> Implementering med lav indvirkning på din hverdag.</p>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-2xl mr-3 text-accent-blue">✔</span>
-                                <p><strong>Total fleksibilitet:</strong> Time- eller projektbaserede kontrakter, tilpasset dit budget.</p>
+                                <p><strong>Total fleksibilitet:</strong> Timebaserede eller projektbaserede kontrakter, tilpasset dit budget.</p>
                             </li>
                         </ul>
                     </div>
                     <div class="order-1 lg:order-2 flex justify-center">
-                        <img src="assets/solution-pers.png" alt="Billede af en skræddersyet løsning" class="rounded-xl shadow-lg w-full max-w-lg">
+                        <img src="assets/solution-pers.png" alt="Illustration af skræddersyet løsning" class="rounded-xl shadow-lg w-full max-w-lg">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: Tools that Empower your Business -->
         <section id="tools" class="py-16 bg-white section-fade-in">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue">Værktøjer, der styrker din virksomhed</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-blue">Værktøjer, der driver din virksomhed</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center max-w-6xl mx-auto">
-                    <!-- Container for Excel logo -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-excel.png" alt="Microsoft Excel Logo" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <!-- Container for Power Query logo -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-powerquery.png" alt="Power Query Logo" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <!-- Container for Power BI logo -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-powerbi.png" alt="Power BI Logo" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <!-- Container for KNIME logo -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-knime.png" alt="KNIME Logo" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <!-- Container for Google Sheets logo -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-googlesheets.png" alt="Google Sheets Logo" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <!-- Container for SQL logo -->
-                    <div class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
-                        <img src="assets/logo-sql.png" alt="SQL Logo" class="max-w-full max-h-full object-contain">
-                    </div>
+                    <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+                        <img src="assets/logo-excel.png" alt="Microsoft Excel logo" class="max-w-full max-h-full object-contain">
+                    </a>
+                    
+                    <a href="https://www.google.com/sheets/about/" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+                        <img src="assets/logo-googlesheets.png" alt="Google Sheets logo" class="max-w-full max-h-full object-contain">
+                    </a>
+                    <a href="https://learn.microsoft.com/en-us/power-query/" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+                        <img src="assets/logo-powerquery.png" alt="Power Query logo" class="max-w-full max-h-full object-contain">
+                    </a>
+                    <a href="https://powerbi.microsoft.com/" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+                        <img src="assets/logo-powerbi.png" alt="Power BI logo" class="max-w-full max-h-full object-contain">
+                    </a>
+                    <a href="https://www.knime.com" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+                        <img src="assets/logo-knime.png" alt="KNIME logo" class="max-w-full max-h-full object-contain">
+                    </a>
+                    <a href="https://www.mysql.com/" target="_blank" class="w-24 h-24 flex items-center justify-center rounded-lg shadow-md bg-white hover:scale-105 transition-transform duration-300 p-2">
+                        <img src="assets/logo-sql.png" alt="SQL logo" class="max-w-full max-h-full object-contain">
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Section 5: My Work Process (Builds trust and clarity) -->
         <section id="process" class="py-16 section-fade-in">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-primary-blue">Hvordan opnår vi dette?</h2>
-                <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                    At bruge mine tjenester er en simpel proces, der er designet til din bekvemmelighed og projektsucces.
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-primary-blue">Hvordan får vi det gjort?</h2>
+                <p class="text-center text-gray-600 mb-3 max-w-3xl mx-auto">
+                    En simpel tilgang designet til din komfort og dit projekts succes.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <p class="text-center text-gray-600 mb-3 max-w-3xl mx-auto">    
+                    Med over 11 års erfaring inden for finans, drift og administration forstår jeg de udfordringer, der følger med at drive en virksomhed med regneark.
+                </p>
+                <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">    
+                    Mit mål er at optimere dine processer uden dyre, komplekse systemer.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
-                        <div class="w-16 h-16 bg-accent-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
-                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Indledende samtale</h3>
-                        <p class="text-gray-600">Vi diskuterer dine udfordringer og mål i en gratis 30-minutters samtale.</p>
+                        <div class="w-16 h-16 bg-gradient-to-r from-sky-400 to-indigo-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">1</div>
+                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Indledende interview</h3>
+                        <p class="text-gray-600">Vi taler om dine udfordringer, mål og de processer, du ønsker at forbedre. Det er en gratis 30-minutters samtale.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
-                        <div class="w-16 h-16 bg-accent-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
+                        <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">2</div>
+                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Opdagelse og analyse</h3>
+                        <p class="text-gray-600">Efter den indledende samtale foretager vi en detaljeret gennemgang af de involverede processer og ressourcer.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-fuchsia-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">3</div>
                         <h3 class="text-xl font-semibold text-primary-blue mb-2">Forslag og aftale</h3>
-                        <p class="text-gray-600">Jeg præsenterer et detaljeret forslag, der beskriver omfang, tidslinje og omkostninger.</p>
+                        <p class="text-gray-600">Jeg præsenterer et detaljeret forslag med omfang, tidslinje og omkostninger.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
-                        <div class="w-16 h-16 bg-accent-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
+                        <div class="w-16 h-16 bg-gradient-to-r from-fuchsia-400 to-rose-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">4</div>
                         <h3 class="text-xl font-semibold text-primary-blue mb-2">Samarbejdsbaseret udførelse</h3>
-                        <p class="text-gray-600">Vi implementerer løsningen med regelmæssige opdateringer for at sikre, at den opfylder dine forventninger.</p>
+                        <p class="text-gray-600">Vi implementerer løsningen med regelmæssige opdateringer for at sikre, at den lever op til dine forventninger.</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-6 bg-[#F0F5F8] rounded-xl shadow-md">
-                        <div class="w-16 h-16 bg-accent-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">4</div>
+                        <div class="w-16 h-16 bg-gradient-to-r from-rose-400 to-pink-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-2">5</div>
                         <h3 class="text-xl font-semibold text-primary-blue mb-2">Levering og support</h3>
-                        <p class="text-gray-600">Du modtager dit færdige projekt med den nødvendige support for at sikre succes.</p>
+                        <p class="text-gray-600">Du modtager det færdige projekt med den support, du har brug for for at gøre det til en succes.</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Section 6: Final CTA and Form -->
         <section id="contact" class="py-16 bg-white section-fade-in">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-primary-blue">Tag kontrol over dine finanser og drift.</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-primary-blue">Tag kontrol over din økonomi og drift.</h2>
                 <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                    Stop med at spilde tid, og begynd at træffe beslutninger med klare data. Book en gratis konsultation og opdag, hvordan jeg kan transformere din virksomhed.
+                    Stop med at spilde tid og begynd at træffe beslutninger med klare data. Book en gratis konsultation og opdag, hvordan jeg kan transformere din virksomhed.
                 </p>
                 <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
                     <form action="https://formspree.io/f/mpwrevzq" method="POST" class="space-y-6" onsubmit="return validateForm()">
@@ -246,7 +292,7 @@
                         <button type="submit" class="w-full bg-[#EF4444] text-white font-bold py-3 px-4 rounded-md hover:bg-[#DC2626] transition-colors cta-button">Send besked</button>
                     </form>
                     <div class="text-center mt-6 text-gray-600">
-                        <p class="text-sm text-gray-500">Drevet af Formspree.</p>
+                        <p class="text-sm text-gray-500">Formular drevet af Formspree.</p>
                     </div>
                 </div>
             </div>
@@ -257,18 +303,30 @@
     <footer class="text-center py-8 mt-12 border-t border-gray-200">
         <p class="text-gray-600">&copy; 2025 Pablo Trento. Alle rettigheder forbeholdes.</p>
     </footer>
+    
+    <button id="open-calculator-btn" class="fixed bottom-12 right-12 bg-[#005A8D] text-white p-1 rounded-full shadow-lg hover:bg-[#004A7D] transition-colors duration-300 z-50 transform hover:scale-110">
+        <img src="assets/calc-icon.png" alt="Lommeregner ikon" class="h-12 w-12" />
+    </button>
 
+    <div id="calculator-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-button" id="close-calculator-btn">&times;</button>
+            <iframe id="calculator-iframe"></iframe>
+        </div>
+    </div>
+
+    
     <script>
-        // Funktion til at validere reCAPTCHA før formularafsendelse
+        // Validate reCAPTCHA before submitting the form
         function validateForm() {
             const recaptchaResponse = grecaptcha.getResponse();
             if (recaptchaResponse.length === 0) {
-                // Jeg har erstattet 'alert' med en venligere besked
+                // Friendlier message instead of alert
                 const messageBox = document.createElement('div');
                 messageBox.className = "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 bg-red-500 text-white rounded-lg shadow-xl z-[100]";
-                messageBox.innerHTML = "Venligst bekræft reCAPTCHA, før du sender beskeden.";
+                messageBox.innerHTML = "Bekræft venligst reCAPTCHA, før du sender beskeden.";
                 document.body.appendChild(messageBox);
-                setTimeout(() => messageBox.remove(), 3000); // Beskeden forsvinder efter 3 sekunder
+                setTimeout(() => messageBox.remove(), 3000); // Disappears after 3 seconds
                 return false;
             }
             return true;
@@ -286,6 +344,22 @@
             const observer = new IntersectionObserver(fader);
             const sections = document.querySelectorAll('.section-fade-in');
             sections.forEach(section => observer.observe(section));
+            
+            // Modal logic
+            const openBtn = document.getElementById('open-calculator-btn');
+            const closeBtn = document.getElementById('close-calculator-btn');
+            const modal = document.getElementById('calculator-modal');
+            const iframe = document.getElementById('calculator-iframe');
+
+            openBtn.addEventListener('click', () => {
+                iframe.src = 'fin-calc-pop-2.html';
+                modal.classList.add('show');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+                iframe.src = '';
+            });
         });
     </script>
 </body>
