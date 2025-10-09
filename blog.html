@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -120,171 +120,21 @@
             </div>
         </section>
 
-        <!-- Blog Posts Grid -->
-        <section id="blog-posts" class="py-12 section-fade-in">
-            <h2 class="text-3xl font-bold text-center mb-12 text-[#003366]">Latest Articles</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Blog Post 1 -->
-                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-sky-400 to-indigo-500 flex items-center justify-center">
-                        <span class="text-6xl text-white">📈</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="category-tag">Business Intelligence</span>
-                            <span class="text-sm text-gray-500">Oct 2025</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[#003366] mb-3">
-                            Building Effective Power BI Dashboards: A Complete Guide
-                        </h3>
-                        <p class="text-gray-600 mb-4 line-clamp-3">
-                            Learn how to design compelling and actionable dashboards that drive business decisions. From data modeling to visual storytelling.
-                        </p>
-                        <a href="ideas/power-bi-dashboard-complete.html" class="inline-flex items-center text-[#005A8D] font-medium hover:text-[#004772] transition-colors">
-                            Read More 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </article>
+				 <!-- Blog Posts Grid -->
+		<section id="blog-posts" class="py-12 section-fade-in">
+					<h2 class="text-3xl font-bold text-center mb-12 text-[#003366]">Latest Articles</h2>
+					<div id="blog-posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						<!-- Blog post cards will be rendered here dynamically -->
+					</div>
 
+			<!-- Load More Button -->
+			<div class="text-center mt-12">
+					<button id="load-more-btn" class="bg-gradient-to-r from-sky-400 to-indigo-500 text-white font-bold py-3 px-8 rounded-lg hover:from-sky-500 hover:to-indigo-600 transition-all duration-300">
+						Load More Articles
+					</button>
+			</div>
+		</section> 
 
-                <!-- Blog Post 2 -->
-                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-emerald-400 to-teal-500 flex items-center justify-center">
-                        <span class="text-6xl text-white">🤖</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="category-tag">Automation</span>
-                            <span class="text-sm text-gray-500">Sep 2024</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[#003366] mb-3">
-                            Implementing AI Agents in Financial Processes
-                        </h3>
-                        <p class="text-gray-600 mb-4 line-clamp-3">
-                            Discover how intelligent automation can transform your financial workflows, reduce errors, and increase processing speed.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-[#005A8D] font-medium hover:text-[#004772] transition-colors">
-                            Read More 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 3 -->
-                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
-                        <span class="text-6xl text-white">💰</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="category-tag">Financial Analysis</span>
-                            <span class="text-sm text-gray-500">Sep 2024</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[#003366] mb-3">
-                            Advanced Excel Techniques for Financial Modeling
-                        </h3>
-                        <p class="text-gray-600 mb-4 line-clamp-3">
-                            Master complex Excel formulas, pivot tables, and VBA automation for sophisticated financial analysis and reporting.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-[#005A8D] font-medium hover:text-[#004772] transition-colors">
-                            Read More 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 4 -->
-                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-orange-400 to-red-500 flex items-center justify-center">
-                        <span class="text-6xl text-white">🔗</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="category-tag">Integration</span>
-                            <span class="text-sm text-gray-500">Aug 2024</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[#003366] mb-3">
-                            Connecting APIs with n8n: Workflow Automation Guide
-                        </h3>
-                        <p class="text-gray-600 mb-4 line-clamp-3">
-                            Step-by-step tutorial on creating seamless data flows between different business applications using n8n workflows.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-[#005A8D] font-medium hover:text-[#004772] transition-colors">
-                            Read More 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 5 -->
-                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
-                        <span class="text-6xl text-white">🧮</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="category-tag">Analytics</span>
-                            <span class="text-sm text-gray-500">Aug 2024</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[#003366] mb-3">
-                            KNIME vs Python: Choosing the Right Data Analysis Tool
-                        </h3>
-                        <p class="text-gray-600 mb-4 line-clamp-3">
-                            Compare the strengths and use cases of KNIME and Python for data analysis, helping you choose the best tool for your projects.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-[#005A8D] font-medium hover:text-[#004772] transition-colors">
-                            Read More 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 6 -->
-                <article class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-indigo-400 to-purple-500 flex items-center justify-center">
-                        <span class="text-6xl text-white">📋</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="category-tag">Best Practices</span>
-                            <span class="text-sm text-gray-500">Jul 2024</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[#003366] mb-3">
-                            Data Quality Management: Ensuring Accurate Business Insights
-                        </h3>
-                        <p class="text-gray-600 mb-4 line-clamp-3">
-                            Essential strategies for maintaining data integrity, implementing validation rules, and creating reliable reporting systems.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-[#005A8D] font-medium hover:text-[#004772] transition-colors">
-                            Read More 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Load More Button -->
-            <div class="text-center mt-12">
-                <button class="bg-gradient-to-r from-sky-400 to-indigo-500 text-white font-bold py-3 px-8 rounded-lg hover:from-sky-500 hover:to-indigo-600 transition-all duration-300">
-                    Load More Articles
-                </button>
-            </div>
-        </section>
 
         <!-- Newsletter Signup -->
         <section id="newsletter" class="py-16 section-fade-in">
@@ -358,6 +208,82 @@
         document.querySelectorAll('.section-fade-in').forEach(section => {
             observer.observe(section);
         });
+		
+		
+		 document.addEventListener('DOMContentLoaded', () => {
+        const blogPostsContainer = document.getElementById('blog-posts-container');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const postsPerPage = 3; // Number of posts to show initially
+        let currentPostsToShow = postsPerPage;
+
+        // Function to create a blog post card HTML element
+        function createPostCard(post) {
+            const article = document.createElement('article');
+            article.className = 'blog-card bg-white rounded-lg shadow-md overflow-hidden';
+
+            article.innerHTML = `
+                <div class="h-48 bg-gradient-to-r from-sky-400 to-indigo-500 flex items-center justify-center">
+                    <span class="text-6xl text-white">${post.icon || '💡'}</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="category-tag">${post.category}</span>
+                        <span class="text-sm text-gray-500">${post.date}</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-[#003366] mb-3">
+                        ${post.title}
+                    </h3>
+                    <p class="text-gray-600 mb-4 line-clamp-3">
+                        ${post.description}
+                    </p>
+                    <a href="${post.url}" class="inline-flex items-center text-[#005A8D] font-medium hover:text-[#004772] transition-colors">
+                        Read More 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            `;
+            return article;
+        }
+
+        // Function to render posts
+        async function renderPosts() {
+            try {
+                const response = await fetch('posts.json'); // Fetch the manifest file
+                const posts = await response.json();
+
+                // Clear existing posts if any (e.g., for "Load More" functionality)
+                blogPostsContainer.innerHTML = '';
+
+                // Render a subset of posts
+                const postsToRender = posts.slice(0, currentPostsToShow);
+                postsToRender.forEach(post => {
+                    const card = createPostCard(post);
+                    blogPostsContainer.appendChild(card);
+                });
+
+                // Show/hide Load More button
+                if (currentPostsToShow >= posts.length) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'inline-flex';
+                }
+            } catch (error) {
+                console.error("Error loading blog posts:", error);
+                blogPostsContainer.innerHTML = '<p class="text-center text-red-500 col-span-full">Failed to load blog posts. Please try again later.</p>';
+            }
+        }
+
+        // Event listener for "Load More" button
+        loadMoreBtn.addEventListener('click', () => {
+            currentPostsToShow += postsPerPage;
+            renderPosts();
+        });
+
+        // Initial render of posts
+        renderPosts();
+    });
     </script>
 </body>
 </html>
