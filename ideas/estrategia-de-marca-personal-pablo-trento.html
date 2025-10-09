@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plan de Coaching Personalizado para Consultor Financiero">
+  <meta name="keywords" content="linkedin, contenido, semana, content, automatización">
+  <meta name="author" content="Pablo Trento">
+  <title>ESTRATEGIA DE MARCA PERSONAL - PABLO TRENTO | Pablo Trento</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Pablo Trento Brand Colors */
+    :root {
+      --primary-blue: #003366;
+      --accent-blue: #005A8D;
+      --background-cream: #F8F7F4;
+      --text-dark: #3D3D3D;
+      --cta-red: #EF4444;
+    }
+    
+    /* Reading Progress Bar */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+    
+    /* Header Styles */
+    .header-sticky {
+      position: sticky;
+      top: 0;
+      background: rgba(248, 247, 244, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 51, 102, 0.1);
+      z-index: 100;
+      padding: 1rem 0;
+    }
+    
+    .header-sticky nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent-blue);
+    }
+    
+    /* Main Content */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background-cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .section-padding {
+      padding: 3rem 0;
+    }
+    
+    .section-fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    
+    .section-fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Blog Post Styles */
+    .blog-post {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 51, 102, 0.1);
+      overflow: hidden;
+    }
+    
+    .blog-post-header {
+      padding: 3rem 3rem 2rem;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-bottom: 3px solid var(--accent-blue);
+    }
+    
+    .blog-category {
+      display: inline-block;
+      background: var(--primary-blue);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+    
+    .blog-post-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin: 0 0 1rem;
+      line-height: 1.2;
+    }
+    
+    .blog-post-excerpt {
+      font-size: 1.25rem;
+      color: #6b7280;
+      margin: 0 0 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .blog-post-meta {
+      display: flex;
+      gap: 1.5rem;
+      color: #9ca3af;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    
+    .blog-post-meta span {
+      position: relative;
+    }
+    
+    .blog-post-meta span:not(:last-child)::after {
+      content: '•';
+      position: absolute;
+      right: -0.75rem;
+    }
+    
+    /* Table of Contents */
+    .toc {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 3rem;
+    }
+    
+    .toc h3 {
+      margin: 0 0 1rem;
+      color: var(--primary-blue);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .toc li {
+      margin: 0.5rem 0;
+    }
+    
+    .toc a {
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .toc a:hover {
+      color: var(--accent-blue);
+    }
+    
+    .toc .toc-h2 {
+      font-weight: 600;
+    }
+    
+    .toc .toc-h3 {
+      padding-left: 1rem;
+      font-weight: 500;
+    }
+    
+    .toc .toc-h4 {
+      padding-left: 2rem;
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+    
+    /* Article Content */
+    .blog-post-content {
+      padding: 0 3rem 3rem;
+    }
+    
+    .prose h2 {
+      color: var(--primary-blue);
+      font-size: 1.875rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-blue);
+    }
+    
+    .prose h3 {
+      color: var(--accent-blue);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+    }
+    
+    .prose h4 {
+      color: var(--text-dark);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+    }
+    
+    .prose p {
+      margin: 1rem 0;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    
+    .prose ul, .prose ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+    
+    .prose li {
+      margin: 0.5rem 0;
+    }
+    
+    .prose blockquote {
+      border-left: 4px solid var(--accent-blue);
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      background: #f8f9fa;
+      font-style: italic;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .prose code {
+      background: #f1f5f9;
+      color: var(--primary-blue);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+    
+    .prose pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    
+    .prose pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    
+    /* Article Footer */
+    .article-footer {
+      background: #f8f9fa;
+      padding: 2rem 3rem;
+      border-top: 1px solid #e9ecef;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .share-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .share-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent-blue);
+      background: white;
+      color: var(--accent-blue);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .share-btn:hover {
+      background: var(--accent-blue);
+      color: white;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-secondary {
+      background: var(--primary-blue);
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    
+    /* Site Footer */
+    .site-footer {
+      background: var(--primary-blue);
+      color: white;
+      padding: 3rem 0 2rem;
+      margin-top: 4rem;
+    }
+    
+    .footer-content {
+      text-align: center;
+    }
+    
+    .footer-content h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+	  color: #94a3b8;
+    }
+    
+    .footer-content p {
+      margin: 0 0 1.5rem;
+      color: #94a3b8;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .blog-post-title {
+        font-size: 2rem;
+      }
+      
+      .blog-post-header,
+      .blog-post-content,
+      .article-footer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      
+      .toc {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+      }
+      
+      .header-sticky nav {
+        padding: 0 1rem;
+      }
+      
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .article-footer {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="reading-progress"></div>
+  
+  <!-- Header Navigation -->
+  <header class="header-sticky">
+    <nav class="container">
+      <div class="text-xl font-bold text-primary-blue">Pablo Trento</div>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../blog.html" class="nav-link">Blog</a>
+        <a href="../index.html#contact" class="nav-link">Contact</a>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <article class="blog-post section-fade-in">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">9 de octubre de 2025 • Tecnología • 9 min lectura</div>
+        <h1 class="blog-post-title">ESTRATEGIA DE MARCA PERSONAL - PABLO TRENTO</h1>
+      </header>
+      <div class="blog-post-content prose">
+        <h2>Plan de Coaching Personalizado para Consultor Financiero</h2>
+<hr>
+<h2>ANÁLISIS DE SITUACIÓN ACTUAL</h2>
+<h3>FORTALEZAS IDENTIFICADAS</h3>
+<p><strong>Experiencia Técnica Sólida:</strong></p>
+<ul>
+<li>11+ años en finanzas corporativas</li>
+<li>Experiencia en empresas de alto nivel (BNP Paribas, Mutual de Médicos)</li>
+<li>Stack tecnológico diverso: Excel/VBA, Power BI, Python, KNIME, SAP</li>
+<li>Resultados cuantificables: €2B en automatizaciones</li>
+</ul>
+<p><strong>Perfil Internacional:</strong></p>
+<ul>
+<li>Experiencia multicultural (Argentina, Portugal, Dinamarca)</li>
+<li>4 idiomas: Español, Inglés, Portugués, Danés</li>
+<li>Adaptabilidad cultural y trabajos remotos</li>
+<li>Network internacional</li>
+</ul>
+<p><strong>Competencias Híbridas Únicas:</strong></p>
+<ul>
+<li>Intersección personas + negocios + tecnología</li>
+<li>Capacidad de comunicar conceptos técnicos complejos</li>
+<li>Liderazgo en transformación digital</li>
+<li>Mentalidad de aprendizaje continuo</li>
+</ul>
+<h3>ÁREAS DE MEJORA</h3>
+<p><strong>Posicionamiento Digital:</strong></p>
+<ul>
+<li>Presencia en LinkedIn mejorable</li>
+<li>Falta de contenido de thought leadership</li>
+<li>Website personal básico</li>
+<li>Storytelling de marca poco desarrollado</li>
+</ul>
+<p><strong>Diferenciación Competitiva:</strong></p>
+<ul>
+<li>Mensaje de valor no suficientemente claro</li>
+<li>Nicho muy amplio (necesita especialización)</li>
+<li>Falta de casos de estudio documentados</li>
+<li>Testimoniales limitados</li>
+</ul>
+<hr>
+<h2>ESTRATEGIA DE MARCA PERSONAL</h2>
+<h3>POSICIONAMIENTO PROPUESTO</h3>
+<p><strong>&quot;EL WIZARD DE LA AUTOMATIZACIÓN FINANCIERA&quot;</strong></p>
+<p><em>&quot;Transformo departamentos financieros caóticos en máquinas de eficiencia usando tecnología. Especialista en hacer que los números hablen automáticamente.&quot;</em></p>
+<p><strong>Value Proposition Único:</strong><br>&quot;Soy el consultor que CFOs contratan cuando necesitan automatizar procesos financieros complejos sin arriesgar compliance. Mi background multinacional en banca de inversión + fintech me permite entender tanto las necesidades estratégicas como los desafíos técnicos.&quot;</p>
+<h3>PILARES DE LA MARCA</h3>
+<p><strong>1. EXPERTISE TÉCNICO (Credibilidad)</strong></p>
+<ul>
+<li>&quot;Financial Tech Translator&quot;</li>
+<li>Capacidad de explicar conceptos complejos de forma simple</li>
+<li>Resultados comprobados en entornos de alta exigencia</li>
+<li>Certificaciones y formación continua</li>
+</ul>
+<p><strong>2. MENTALIDAD GLOBAL (Diferenciación)</strong></p>
+<ul>
+<li>&quot;Global Financial Nomad&quot;</li>
+<li>Experiencia en múltiples jurisdicciones (EU, UK, US)</li>
+<li>Adaptabilidad cultural y regulatoria</li>
+<li>Perspective multicultural en soluciones</li>
+</ul>
+<p><strong>3. ENFOQUE HUMANIZADO (Conexión)</strong></p>
+<ul>
+<li>&quot;People-First Automation&quot;</li>
+<li>Tecnología al servicio de las personas</li>
+<li>Procesos que empoderan, no reemplazan</li>
+<li>Comunicación directa y empática</li>
+</ul>
+<h3>NICHOS DE ESPECIALIZACIÓN</h3>
+<p><strong>Nicho Primario: CFOs de Scale-ups (20-200 empleados)</strong></p>
+<ul>
+<li>Empresas que superaron la fase startup</li>
+<li>Necesitan sistematizar procesos que crecieron orgánicamente</li>
+<li>Budget para inversiones pero quieren ROI comprobado</li>
+<li>Buscan expertise sin contratar full-time</li>
+</ul>
+<p><strong>Nicho Secundario: Departamentos de Finanzas en Corporaciones</strong></p>
+<ul>
+<li>Multinacionales con operaciones complejas</li>
+<li>Proyectos de digital transformation específicos</li>
+<li>Compliance y regulación críticos</li>
+<li>Necesitan expertise temporal especializado</li>
+</ul>
+<p><strong>Nicho Terciario: Fintechs y Empresas de Servicios Financieros</strong></p>
+<ul>
+<li>Startups financieras en crecimiento</li>
+<li>Necesitan automatización desde diseño</li>
+<li>Compliance-first approach</li>
+<li>Escalabilidad técnica crítica</li>
+</ul>
+<hr>
+<h2>PLAN DE CONTENIDO Y THOUGHT LEADERSHIP</h2>
+<h3>TEMAS DE CONTENIDO PRINCIPAL</h3>
+<p><strong>1. AUTOMATIZACIÓN FINANCIERA (40% del contenido)</strong></p>
+<ul>
+<li>&quot;5 procesos que todo CFO debería automatizar antes de fin de año&quot;</li>
+<li>&quot;El costo real de las reconciliaciones manuales&quot;</li>
+<li>&quot;Power BI vs Excel: cuándo hacer el cambio&quot;</li>
+<li>&quot;Automatización sin perder control: mejores prácticas&quot;</li>
+</ul>
+<p><strong>2. DIGITAL TRANSFORMATION (30% del contenido)</strong></p>
+<ul>
+<li>&quot;De Excel a ERP: roadmap de 90 días&quot;</li>
+<li>&quot;7 señales de que tu departamento financiero necesita automatización&quot;</li>
+<li>&quot;ROI real de la automatización: casos de estudio&quot;</li>
+<li>&quot;Compliance automático: posible o utopía?&quot;</li>
+</ul>
+<p><strong>3. INSIGHTS PROFESIONALES (20% del contenido)</strong></p>
+<ul>
+<li>&quot;Lecciones desde BNP Paribas: automatización en banca de inversión&quot;</li>
+<li>&quot;Working nomad: gestionar finanzas desde cualquier lugar&quot;</li>
+<li>&quot;Multiculturalidad en equipos financieros&quot;</li>
+<li>&quot;El futuro del CFO: estratega, no operador&quot;</li>
+</ul>
+<p><strong>4. EDUCATIONAL/TUTORIALS (10% del contenido)</strong></p>
+<ul>
+<li>&quot;KNIME para CFOs: tutorial básico&quot;</li>
+<li>&quot;5 fórmulas de Excel que todo analista debería saber&quot;</li>
+<li>&quot;Python para finanzas: por dónde empezar&quot;</li>
+<li>&quot;Dashboard design: principios para CFOs&quot;</li>
+</ul>
+<h3>CALENDARIO DE CONTENIDO</h3>
+<p><strong>LinkedIn (3 posts/semana):</strong></p>
+<ul>
+<li><strong>Lunes:</strong> Insight profesional o case study</li>
+<li><strong>Miércoles:</strong> Tip técnico o educational</li>
+<li><strong>Viernes:</strong> Reflexión o behind-the-scenes</li>
+</ul>
+<p><strong>Newsletter Mensual:</strong></p>
+<ul>
+<li>Case study detallado</li>
+<li>Trends en automatización financiera</li>
+<li>Tool recommendations</li>
+<li>Q&amp;A con la comunidad</li>
+</ul>
+<p><strong>Contenido Long-form (Mensual):</strong></p>
+<ul>
+<li>Artículo en LinkedIn</li>
+<li>Blog post en website</li>
+<li>Video explicativo</li>
+<li>Webinar o presentación</li>
+</ul>
+<hr>
+<h2>ESTRATEGIA DE NETWORKING Y VISIBILIDAD</h2>
+<h3>TARGETS DE NETWORKING</h3>
+<p><strong>CFOs y Finance Directors:</strong></p>
+<ul>
+<li>LinkedIn outreach personalizado</li>
+<li>Participación en grupos especializados</li>
+<li>Comentarios valor-agregado en sus posts</li>
+<li>Invitaciones a webinars propios</li>
+</ul>
+<p><strong>Consultores y Peers:</strong></p>
+<ul>
+<li>Partnerships estratégicos</li>
+<li>Referrals cruzados</li>
+<li>Co-creation de contenido</li>
+<li>Participación en conferencias</li>
+</ul>
+<p><strong>Vendors de Technology:</strong></p>
+<ul>
+<li>Partnerships con Microsoft (Power BI)</li>
+<li>Colaboración con KNIME</li>
+<li>Relationships con ERP vendors</li>
+<li>Speaker en eventos de tecnología</li>
+</ul>
+<h3>EVENTOS Y COMUNIDADES</h3>
+<p><strong>Eventos para Participar:</strong></p>
+<ul>
+<li>Finance &amp; Technology Summit</li>
+<li>CFO Forum events</li>
+<li>Microsoft Business Applications Summit</li>
+<li>KNIME Community events</li>
+<li>Local business networking (Denmark)</li>
+</ul>
+<p><strong>Comunidades Online:</strong></p>
+<ul>
+<li>LinkedIn Groups: CFO Network, Finance Leaders</li>
+<li>Reddit: r/financialindependence, r/PowerBI</li>
+<li>Discord/Slack: Finance communities</li>
+<li>Local expat business groups (Denmark)</li>
+</ul>
+<hr>
+<h2>PLAN DE IMPLEMENTACIÓN 90 DÍAS</h2>
+<h3>MES 1: FOUNDATION</h3>
+<p><strong>Semana 1-2: Branding Setup</strong></p>
+<ul>
+<li>Actualizar perfil LinkedIn completo</li>
+<li>Crear email signature profesional</li>
+<li>Definir templates para respuestas frecuentes</li>
+<li>Setup básico de herramientas (CRM, scheduler)</li>
+</ul>
+<p><strong>Semana 3-4: Content Creation</strong></p>
+<ul>
+<li>Crear primer batch de 12 posts LinkedIn</li>
+<li>Escribir primer artículo long-form</li>
+<li>Grabar video de presentación personal</li>
+<li>Setup de newsletter en LinkedIn o Mailchimp</li>
+</ul>
+<h3>MES 2: CONTENT &amp; OUTREACH</h3>
+<p><strong>Semana 1-2: Content Publishing</strong></p>
+<ul>
+<li>Lanzar calendario de contenido LinkedIn</li>
+<li>Publicar primer artículo</li>
+<li>Iniciar outreach personalizado (5 por semana)</li>
+<li>Comenzar engagement activo en posts de targets</li>
+</ul>
+<p><strong>Semana 3-4: Community Building</strong></p>
+<ul>
+<li>Unirse a 5 grupos relevantes LinkedIn</li>
+<li>Participar activamente en discussions</li>
+<li>Ofrecer value en comentarios</li>
+<li>Primera presentación en evento virtual</li>
+</ul>
+<h3>MES 3: SCALING &amp; OPTIMIZATION</h3>
+<p><strong>Semana 1-2: Partnerships</strong></p>
+<ul>
+<li>Identificar 3 potential partners</li>
+<li>Proponer colaboraciones de contenido</li>
+<li>Aplicar como speaker en eventos</li>
+<li>Optimizar perfil basado en feedback</li>
+</ul>
+<p><strong>Semana 3-4: Measurement &amp; Iteration</strong></p>
+<ul>
+<li>Analizar métricas de engagement</li>
+<li>A/B test en diferentes tipos de contenido</li>
+<li>Recopilar feedback de network</li>
+<li>Ajustar estrategia basado en resultados</li>
+</ul>
+<hr>
+<h2>HERRAMIENTAS Y RECURSOS</h2>
+<h3>CONTENT CREATION</h3>
+<p><strong>Design:</strong></p>
+<ul>
+<li>Canva Pro para graphics</li>
+<li>Loom para screen recordings</li>
+<li>Adobe Creative Suite (si necesario)</li>
+<li>Templates personalizados para posts</li>
+</ul>
+<p><strong>Writing &amp; Publishing:</strong></p>
+<ul>
+<li>Grammarly para corrección</li>
+<li>Hemingway App para clarity</li>
+<li>Buffer o Hootsuite para scheduling</li>
+<li>LinkedIn Creator tools</li>
+</ul>
+<h3>NETWORKING &amp; CRM</h3>
+<p><strong>Relationship Management:</strong></p>
+<ul>
+<li>HubSpot CRM (free tier)</li>
+<li>LinkedIn Sales Navigator</li>
+<li>Calendly para meetings</li>
+<li>Zoom para videocalls</li>
+</ul>
+<p><strong>Analytics:</strong></p>
+<ul>
+<li>LinkedIn Analytics</li>
+<li>Google Analytics (website)</li>
+<li>Email marketing analytics</li>
+<li>Social media metrics tracking</li>
+</ul>
+<h3>LEAD GENERATION</h3>
+<p><strong>Website &amp; Landing Pages:</strong></p>
+<ul>
+<li>Landing page optimizada (ya creada)</li>
+<li>Lead magnets (checklists, templates)</li>
+<li>Contact forms optimizados</li>
+<li>SEO básico</li>
+</ul>
+<p><strong>Email Marketing:</strong></p>
+<ul>
+<li>Newsletter setup</li>
+<li>Automated sequences</li>
+<li>Segmentación por buyer persona</li>
+<li>A/B testing de subject lines</li>
+</ul>
+<hr>
+<h2>MÉTRICAS Y KPIS</h2>
+<h3>BRAND AWARENESS</h3>
+<ul>
+<li>LinkedIn followers growth: +10% mensual</li>
+<li>Profile views: +20% mensual</li>
+<li>Content engagement rate: &gt;5%</li>
+<li>Inbound connection requests: 10+/semana</li>
+</ul>
+<h3>LEAD GENERATION</h3>
+<ul>
+<li>Qualified leads por mes: 5-10</li>
+<li>Conversion rate leads to meetings: 30%</li>
+<li>Pipeline value generated: €15,000+/mes</li>
+<li>Average deal size: €5,000-8,000</li>
+</ul>
+<h3>BUSINESS IMPACT</h3>
+<ul>
+<li>New clients acquired: 2-3/trimestre</li>
+<li>Revenue generated from personal brand: 40%+ total</li>
+<li>Referrals received: 30% de new business</li>
+<li>Speaking opportunities: 1/trimestre</li>
+</ul>
+<h3>THOUGHT LEADERSHIP</h3>
+<ul>
+<li>LinkedIn article views: 1,000+</li>
+<li>Newsletter subscribers: 500+ in 6 months</li>
+<li>Media mentions o citations: 2+/trimestre</li>
+<li>Invitations to speak: 4+/año</li>
+</ul>
+<hr>
+<h2>EJERCICIOS DE DESARROLLO PERSONAL</h2>
+<h3>CLARIDAD DE MENSAJE</h3>
+<p><strong>Ejercicio 1: Elevator Pitch Evolution</strong></p>
+<ul>
+<li>Crear 5 versiones diferentes de 30-60 segundos</li>
+<li>Testar con diferentes audiences</li>
+<li>Grabar y analizar delivery</li>
+<li>Iterar basado en feedback</li>
+</ul>
+<p><strong>Ejercicio 2: Story Bank Creation</strong></p>
+<ul>
+<li>Documentar 10 casos de éxito detallados</li>
+<li>Identificar lessons learned de cada proyecto</li>
+<li>Crear variaciones cortas y largas de cada historia</li>
+<li>Practicar storytelling oral</li>
+</ul>
+<h3>NETWORKING SKILLS</h3>
+<p><strong>Ejercicio 3: Value-First Outreach</strong></p>
+<ul>
+<li>Crear templates de outreach para diferentes personas</li>
+<li>Practicar research pre-contact</li>
+<li>Desarrollar follow-up sequences</li>
+<li>Measure response rates y optimizar</li>
+</ul>
+<p><strong>Ejercicio 4: Community Engagement</strong></p>
+<ul>
+<li>Comprometerse a comentar 3 posts daily</li>
+<li>Aportar insights únicos, no generic praise</li>
+<li>Hacer preguntas que generen discussion</li>
+<li>Build relationships, no solo connections</li>
+</ul>
+<h3>CONTENT CREATION</h3>
+<p><strong>Ejercicio 5: Content Ideation System</strong></p>
+<ul>
+<li>Crear banco de 50+ ideas de content</li>
+<li>Desarrollar templates para diferentes tipos</li>
+<li>Sistema de calendario y batching</li>
+<li>Feedback loop para optimization</li>
+</ul>
+<hr>
+<h2>RECURSOS ADICIONALES Y LEARNING</h2>
+<h3>LIBROS RECOMENDADOS</h3>
+<ul>
+<li>&quot;Building a StoryBrand&quot; - Donald Miller</li>
+<li>&quot;Expert Secrets&quot; - Russell Brunson  </li>
+<li>&quot;The Go-Giver&quot; - Bob Burg</li>
+<li>&quot;Platform&quot; - Michael Hyatt</li>
+</ul>
+<h3>COURSES &amp; CERTIFICATIONS</h3>
+<ul>
+<li>LinkedIn Learning: Personal Branding courses</li>
+<li>HubSpot Content Marketing Certification</li>
+<li>Google Analytics certification</li>
+<li>Advanced PowerBI/Excel certifications</li>
+</ul>
+<h3>MENTORSHIP &amp; COACHING</h3>
+<ul>
+<li>Buscar mentor en consulting/services business</li>
+<li>Unirse a mastermind de consultores</li>
+<li>Consider hiring brand coach</li>
+<li>Peer accountability partnerships</li>
+</ul>
+<hr>
+<h2>PLAN DE CRISIS Y CONTINGENCIAS</h2>
+<h3>CHALLENGES POTENCIALES</h3>
+<p><strong>Falta de tiempo para contenido:</strong></p>
+<ul>
+<li>Batch content creation los domingos</li>
+<li>Repurpose content en múltiples formatos</li>
+<li>Delegate design y editing</li>
+<li>Use templates y automation</li>
+</ul>
+<p><strong>Low engagement inicial:</strong></p>
+<ul>
+<li>Focus en quality over quantity</li>
+<li>Engage más activamente con otros</li>
+<li>Join conversations, don&#39;t just broadcast</li>
+<li>Patience y consistency</li>
+</ul>
+<p><strong>Impostor syndrome:</strong></p>
+<ul>
+<li>Document all wins y success stories</li>
+<li>Seek feedback regular de clients</li>
+<li>Focus en helping others, not self-promotion</li>
+<li>Join supportive communities</li>
+</ul>
+<h3>SUCCESS MULTIPLIERS</h3>
+<p><strong>Si momentum builds faster:</strong></p>
+<ul>
+<li>Scale content creation</li>
+<li>Consider podcast o video series</li>
+<li>Develop online course o workshop</li>
+<li>Explore speaking circuit más aggressively</li>
+</ul>
+<hr>
+<p><strong>PRÓXIMOS PASOS INMEDIATOS:</strong></p>
+<ol>
+<li><strong>Esta semana:</strong> Actualizar LinkedIn profile completo</li>
+<li><strong>Semana 2:</strong> Crear primer batch de 12 posts </li>
+<li><strong>Semana 3:</strong> Identificar 20 targets para outreach</li>
+<li><strong>Semana 4:</strong> Publicar primer artículo long-form</li>
+</ol>
+<p><strong>COMPROMISO:</strong> Revisar progreso semanalmente y ajustar estrategia mensualmente basado en métricas y feedback del mercado.</p>
+
+      </div>
+      <footer class="article-footer">
+        <div class="navigation-links">
+          <a href="../blog.html" class="btn btn-secondary">← Volver al Blog</a>
+        </div>
+      </footer>
+    </article>
+  </div>
+  
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <h3>Pablo Trento</h3>
+      <p>Business Intelligence & Process Automation Expert</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      });
+      
+      document.querySelectorAll('.section-fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    });
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  const progressBar = document.getElementById('reading-progress');
+
+	  // Función para actualizar el ancho de la barra
+	  function updateProgressBar() {
+		// 1. Obtiene cuánto se ha desplazado el usuario desde la parte superior
+		const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		
+		// 2. Calcula la altura total del documento
+		// scrollHeight: Altura total del contenido del documento.
+		const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+		
+		// 3. Obtiene la altura visible de la ventana (viewport)
+		// clientHeight: Altura visible de la ventana del navegador.
+		const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+		// 4. Calcula el total de scroll posible (scrollHeight - clientHeight)
+		const totalScroll = scrollHeight - clientHeight;
+
+		let progress = 0;
+
+		if (totalScroll > 0) {
+		  // 5. Calcula el porcentaje de desplazamiento
+		  progress = (scrollTop / totalScroll) * 100;
+		}
+		
+		// 6. Actualiza el ancho de la barra de progreso
+		progressBar.style.width = progress + '%';
+	  }
+
+	  // Ejecuta la función al hacer scroll y también al cargar/redimensionar
+	  window.addEventListener('scroll', updateProgressBar);
+	  window.addEventListener('resize', updateProgressBar);
+	  
+	  // Ejecuta una vez al cargar para establecer la posición inicial
+	  updateProgressBar(); 
+	});
+  </script>
+</body>
+</html>
